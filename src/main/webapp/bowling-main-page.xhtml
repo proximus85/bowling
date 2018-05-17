@@ -2,18 +2,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
 
 <ui:composition template="/templates/page-template.xhtml">
     <ui:param name="pageTitle" value="Lets start bowling !!!"/>
-    <ui:define name="panel-top">
-        <h1> top defined </h1>
-    </ui:define>
     <ui:define name="panel-center">
-        <h1> center defined - placeholder for table</h1>
-    </ui:define>
-    <ui:define name="panel-bottom">
-        <h1> bottom defined </h1>
+        <h1>score table</h1>
+        <h:commandButton id="bowlButtonId" action="#{someBean.doSomething()}" image="resources/bowling/images/bowl.jpg"/>
     </ui:define>
 </ui:composition>
 </html>

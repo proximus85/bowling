@@ -8,18 +8,24 @@
 <f:view contentType="text/html">
     <h:head>
         <title>#{pageTitle}</title>
-        <link rel="stylesheet" href="resources/bowling/css/default.css"/>
+        <link rel="stylesheet" href="resources/bowling/css/page-template.css"/>
     </h:head>
     <h:body>
-        <ui:insert name="panel-top">
-            <h1>template for top</h1>
-        </ui:insert>
-        <ui:insert name="panel-center">
-            <h1>template for center</h1>
-        </ui:insert>
-        <ui:insert name="panel-bottom">
-            <h1>template for bottom</h1>
-        </ui:insert>
+        <div align="center" class="header">
+            <ui:insert name="panel-top">
+                    <h1>Herzlich Willkommen :)</h1>
+            </ui:insert>
+        </div>
+        <div align="center">
+            <ui:insert name="panel-center">
+                    <h1 align="center">Placeholde for page center section.</h1>
+            </ui:insert>
+        </div>
+        <div align="center" class="footer">
+            <ui:insert name="panel-bottom">
+                        <h1>Bowling simulator</h1>
+            </ui:insert>
+        </div>
     </h:body>
 </f:view>
 </html>

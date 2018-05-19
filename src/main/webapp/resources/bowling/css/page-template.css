@@ -14,7 +14,12 @@
     text-align: center;
 }
 
-#bowlButtonId{
+#bowlButtonId {
+    height: 100px;
+    width: 100px;
+}
+
+.bowlButton{
     height: 100px;
     width: 100px;
 }

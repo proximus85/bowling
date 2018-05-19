@@ -1,5 +1,6 @@
 package org.home.bowling.impl;
 
+import org.home.bowling.dto.HeatDto;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.ScoreArrayManagerService;
 
@@ -26,6 +27,13 @@ public class ScoreArrayManagerServiceImpl implements ScoreArrayManagerService {
 
             scores.add(scoreCellDto);
         }
+        return scores;
+    }
+
+    @Override
+    public List<ScoreCellDto> recalculatePoints(List<ScoreCellDto> scores, HeatDto heatDto) {
+        ScoreCellDto scoreCellDto = scores.get(heatDto.getRoundNumber());
+        scoreCellDto.getScores().set(heatDto.getHeatNumber(), heatDto.getPinsHeated());
         return scores;
     }
 }

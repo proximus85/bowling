@@ -1,11 +1,10 @@
 package org.home.bowling.backendbeans;
 
-import lombok.Getter;
 import lombok.Setter;
 import org.home.bowling.dto.HeatDto;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.impl.RandomPointsGeneratorServiceImpl;
-import org.home.bowling.service.ScoreArrayManagerService;
+import org.home.bowling.service.ScoresArrayStateKeeperService;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -21,7 +20,7 @@ public class ScoresBackendBean {
     public static final Integer MAX_NUMBER_OF_PINS = 10;
 
     @EJB
-    private ScoreArrayManagerService scoreArrayManagerService;
+    private ScoresArrayStateKeeperService scoresArrayStateKeeperService;
 
     @EJB
     private RandomPointsGeneratorServiceImpl randomPointsGeneratorService;
@@ -30,18 +29,18 @@ public class ScoresBackendBean {
 
     @PostConstruct
     void initializeScoresArray() {
-        scores = scoreArrayManagerService.getInitialScoresArrayState();
+        scores = scoresArrayStateKeeperService.getInitialScoresArrayState();
     }
 
     public void addScores() {
+        //TODO move to some state holder
         Integer roundNumber = 3;
         Integer heatNumber = 1;
-
-        //TODO move to some state holder
-
         Integer pinsHeated = randomPointsGeneratorService.getRandomNumber(MAX_NUMBER_OF_PINS);
+
+
         HeatDto heatDto = new HeatDto(roundNumber, heatNumber, pinsHeated);
-        scores = scoreArrayManagerService.recalculatePoints(scores, heatDto);
+        scores = scoresArrayStateKeeperService.updateScores(scores, heatDto);
     }
 
     public List<ScoreCellDto> getScores() {

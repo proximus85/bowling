@@ -43,7 +43,8 @@ public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeper
     }
 
     @Override
-    public List<ScoreCellAlgorithmWrapper> updateScores(List<ScoreCellAlgorithmWrapper> scores, CurrentThrowDto currentThrowDto) {
+    public List<ScoreCellAlgorithmWrapper> updateScores(List<ScoreCellAlgorithmWrapper> scores,
+                                                        CurrentThrowDto currentThrowDto) {
 
         ScoresCalculationStrategy scoresCalculationStrategy =
                 scoresCalculationStrategyPickerService.pickScoresCalculationStrategy(scores, currentThrowDto);

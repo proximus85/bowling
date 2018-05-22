@@ -11,18 +11,18 @@ import java.util.List;
 @Stateless
 public class ScoresCalculatorServiceImpl implements ScoresCalculatorService {
 
-    private List<ScoreCellAlgorithmWrapper> previousScoreCellAlgorithmWrappers;
+    private List<ScoreCellAlgorithmWrapper> scoreCellAlgorithmWrappers;
 
     @Override
-    public void setScoresCells(List<ScoreCellAlgorithmWrapper> scoresCells) {
-        this.previousScoreCellAlgorithmWrappers = scoresCells;
+    public void setScoresCells(List<ScoreCellAlgorithmWrapper> scoreCellAlgorithmWrappers) {
+        this.scoreCellAlgorithmWrappers = scoreCellAlgorithmWrappers;
     }
 
     @Override
     public void setCalculationAlgorithmForLastScoreCell(ScoresCalculationStrategy scoresCalculationStrategy) {
-        int indexOfLastElement = previousScoreCellAlgorithmWrappers.size() - 1;
+        int indexOfLastElement = scoreCellAlgorithmWrappers.size() - 1;
 
-        previousScoreCellAlgorithmWrappers.get(indexOfLastElement)
+        scoreCellAlgorithmWrappers.get(indexOfLastElement)
                 .setScoresCalculationStrategy(scoresCalculationStrategy);
     }
 
@@ -30,9 +30,9 @@ public class ScoresCalculatorServiceImpl implements ScoresCalculatorService {
     public List<ScoreCellAlgorithmWrapper> calculateScores() {
         List<ScoreCellAlgorithmWrapper> newScoreCellAlgorithmWrappers = new ArrayList<>();
 
-        for (ScoreCellAlgorithmWrapper re : previousScoreCellAlgorithmWrappers) {
-            newScoreCellAlgorithmWrappers.add(re.getScoresCalculationStrategy()
-                    .recalculateScores(newScoreCellAlgorithmWrappers));
+        for (int i = 0; i < scoreCellAlgorithmWrappers.size(); i++) {
+            newScoreCellAlgorithmWrappers.add(scoreCellAlgorithmWrappers.get(i).getScoresCalculationStrategy()
+                    .recalculateScores(newScoreCellAlgorithmWrappers, i));
         }
         return newScoreCellAlgorithmWrappers;
     }

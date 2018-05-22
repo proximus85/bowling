@@ -7,5 +7,5 @@ import java.util.List;
 
 @Local
 public interface ScoresCalculationStrategy {
-    ScoreCellAlgorithmWrapper recalculateScores(List<ScoreCellAlgorithmWrapper> scoreCells);
+    ScoreCellAlgorithmWrapper recalculateScores(List<ScoreCellAlgorithmWrapper> scoreCells, int cellIndex);
 }

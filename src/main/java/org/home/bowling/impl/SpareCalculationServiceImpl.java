@@ -11,6 +11,6 @@ public class SpareCalculationServiceImpl implements ScoresCalculationStrategy {
 
     @Override
     public ScoreCellAlgorithmWrapper recalculateScores(List<ScoreCellAlgorithmWrapper> scoreCells) {
-        return scoreCells;
+        throw new IllegalStateException("operation not supported");
     }
 }

@@ -50,6 +50,6 @@ public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeper
 
         scoresCalculatorService.setScoresCells(scores);
         scoresCalculatorService.setCalculationAlgorithmForLastScoreCell(scoresCalculationStrategy);
-        return scoresCalculatorService.calculateScores(scoresCalculationStrategy);
+        return scoresCalculatorService.calculateScores();
     }
 }

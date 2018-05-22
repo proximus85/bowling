@@ -9,7 +9,6 @@ public class AnzeigeCalculationStrategyServiceImpl implements ScoresCalculationS
 
     @Override
     public ScoreCellAlgorithmWrapper recalculateScores(List<ScoreCellAlgorithmWrapper> scoreCells) {
-
-        return scoreCells;
+        throw new IllegalStateException("operation not supported");
     }
 }

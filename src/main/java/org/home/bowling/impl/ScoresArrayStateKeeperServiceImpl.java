@@ -1,12 +1,12 @@
 package org.home.bowling.impl;
 
 import org.home.bowling.dto.CurrentThrowDto;
+import org.home.bowling.dto.ScoreCellAlgorithmWrapper;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.ScoresArrayStateKeeperService;
 import org.home.bowling.service.ScoresCalculationStrategy;
 import org.home.bowling.service.ScoresCalculationStrategyPickerService;
 import org.home.bowling.service.ScoresCalculatorService;
-import org.home.bowling.util.ScoreCellAlgorithmWrapper;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

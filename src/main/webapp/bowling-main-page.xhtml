@@ -7,39 +7,39 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="/templates/page-template.xhtml">
-        <ui:param name="pageTitle" value="Lets start bowling !!!"/>
-        <ui:define name="panel-center">
-            <h1>score table</h1>
-            <table id="scores-table">
-                <tr>
-                    <ui:repeat value="#{scoresBackendBean.scores}" var="scoresCell">
-                        <th>
-                            <h:outputText value="#{scoresCell.roundNo}"/>
-                        </th>
-                    </ui:repeat>
-                </tr>
-                <tr>
-                    <ui:repeat value="#{scoresBackendBean.scores}" var="scoreCell">
-                        <td>
-                            <ui:repeat value="#{scoreCell.scores}" var="score">
-                                <h:outputText value="#{score}"/>
-                            </ui:repeat>
-                        </td>
-                    </ui:repeat>
-                </tr>
-                <tr>
-                    <ui:repeat value="#{scoresBackendBean.scores}" var="scoresCell">
-                        <td>
-                            <h:outputText value="#{scoresCell.totalScores}"/>
-                        </td>
-                    </ui:repeat>
-                </tr>
-            </table>
+    <ui:param name="pageTitle" value="Lets start bowling !!!"/>
+    <ui:define name="panel-center">
+        <h1>score table</h1>
+        <table id="scores-table">
+            <tr>
+                <ui:repeat value="#{scoresBackendBean.scores}" var="scoresCell">
+                    <th>
+                        <h:outputText value="#{scoresCell.roundNo}"/>
+                    </th>
+                </ui:repeat>
+            </tr>
+            <tr>
+                <ui:repeat value="#{scoresBackendBean.scores}" var="scoreCell">
+                    <td>
+                        <ui:repeat value="#{scoreCell.scores}" var="score">
+                            <h:outputText value="#{score}"/>
+                        </ui:repeat>
+                    </td>
+                </ui:repeat>
+            </tr>
+            <tr>
+                <ui:repeat value="#{scoresBackendBean.scores}" var="scoresCell">
+                    <td>
+                        <h:outputText value="#{scoresCell.totalScores}"/>
+                    </td>
+                </ui:repeat>
+            </tr>
+        </table>
 
-            <h:commandLink action="#{scoresBackendBean.addScores()}">
-                <f:ajax render=":scores-array-form-id"/>
-                <h:graphicImage id="bowlButtonId" styleClass="bowlButton" value="resources/bowling/images/bowl.jpg"/>
-            </h:commandLink>
-        </ui:define>
+        <h:commandLink action="#{scoresBackendBean.addScores()}">
+            <f:ajax render=":scores-array-form-id"/>
+            <h:graphicImage id="bowlButtonId" styleClass="bowlButton" value="resources/bowling/images/bowl.jpg"/>
+        </h:commandLink>
+    </ui:define>
 </ui:composition>
 </html>

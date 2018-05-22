@@ -2,11 +2,11 @@ package org.home.bowling.backendbeans;
 
 import lombok.Setter;
 import org.home.bowling.dto.CurrentThrowDto;
+import org.home.bowling.dto.ScoreCellAlgorithmWrapper;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.impl.RandomPointsGeneratorServiceImpl;
 import org.home.bowling.mapper.ScoresCellMapper;
 import org.home.bowling.service.ScoresArrayStateKeeperService;
-import org.home.bowling.util.ScoreCellAlgorithmWrapper;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

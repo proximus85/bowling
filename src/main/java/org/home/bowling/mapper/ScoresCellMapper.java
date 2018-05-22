@@ -1,7 +1,7 @@
 package org.home.bowling.mapper;
 
+import org.home.bowling.dto.ScoreCellAlgorithmWrapper;
 import org.home.bowling.dto.ScoreCellDto;
-import org.home.bowling.util.ScoreCellAlgorithmWrapper;
 
 import javax.ejb.Stateless;
 import java.util.ArrayList;

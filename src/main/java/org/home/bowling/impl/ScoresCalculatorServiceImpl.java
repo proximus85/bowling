@@ -1,8 +1,8 @@
 package org.home.bowling.impl;
 
+import org.home.bowling.dto.ScoreCellAlgorithmWrapper;
 import org.home.bowling.service.ScoresCalculationStrategy;
 import org.home.bowling.service.ScoresCalculatorService;
-import org.home.bowling.util.ScoreCellAlgorithmWrapper;
 
 import javax.ejb.Stateless;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package org.home.bowling.service;
 
-import org.home.bowling.util.ScoreCellAlgorithmWrapper;
+import org.home.bowling.dto.ScoreCellAlgorithmWrapper;
 
 import javax.ejb.Local;
 import java.util.List;

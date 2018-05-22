@@ -1,6 +1,6 @@
 package org.home.bowling.impl;
 
-import org.home.bowling.dto.HeatDto;
+import org.home.bowling.dto.CurrentThrowDto;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.ScoresArrayStateKeeperService;
 import org.home.bowling.service.ScoresCalculationStrategy;
@@ -43,10 +43,10 @@ public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeper
     }
 
     @Override
-    public List<ScoreCellAlgorithmWrapper> updateScores(List<ScoreCellAlgorithmWrapper> scores, HeatDto heatDto) {
+    public List<ScoreCellAlgorithmWrapper> updateScores(List<ScoreCellAlgorithmWrapper> scores, CurrentThrowDto currentThrowDto) {
 
         ScoresCalculationStrategy scoresCalculationStrategy =
-                scoresCalculationStrategyPickerService.pickScoresCalculationStrategy(scores.get(scores.size() - 1), heatDto);
+                scoresCalculationStrategyPickerService.pickScoresCalculationStrategy(scores, currentThrowDto);
 
         scoresCalculatorService.setScoresCells(scores);
         scoresCalculatorService.setCalculationAlgorithmForLastScoreCell(scoresCalculationStrategy);

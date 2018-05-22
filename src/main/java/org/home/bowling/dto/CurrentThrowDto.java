@@ -5,8 +5,8 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class HeatDto {
+public class CurrentThrowDto {
     Integer roundNumber;
-    Integer heatNumber;
-    Integer pinsHeated;
+    Integer throwNumber;
+    Integer pinsHited;
 }

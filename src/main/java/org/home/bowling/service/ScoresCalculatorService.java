@@ -9,7 +9,7 @@ import java.util.List;
 public interface ScoresCalculatorService {
     void setScoresCells(List<ScoreCellAlgorithmWrapper> scoresCells);
 
-    List<ScoreCellAlgorithmWrapper> calculateScores(ScoresCalculationStrategy scoresCalculationStrategy);
+    List<ScoreCellAlgorithmWrapper> calculateScores();
 
     void setCalculationAlgorithmForLastScoreCell(ScoresCalculationStrategy scoresCalculationStrategy);
 }

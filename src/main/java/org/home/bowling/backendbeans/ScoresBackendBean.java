@@ -1,7 +1,7 @@
 package org.home.bowling.backendbeans;
 
 import lombok.Setter;
-import org.home.bowling.dto.HeatDto;
+import org.home.bowling.dto.CurrentThrowDto;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.impl.RandomPointsGeneratorServiceImpl;
 import org.home.bowling.mapper.ScoresCellMapper;
@@ -45,8 +45,8 @@ public class ScoresBackendBean {
         Integer heatNumber = 1;
         Integer pinsHeated = randomPointsGeneratorService.getRandomNumber(MAX_NUMBER_OF_PINS);
 
-        HeatDto heatDto = new HeatDto(roundNumber, heatNumber, pinsHeated);
-        scoreCellAlgorithmWrappers = scoresArrayStateKeeperService.updateScores(scoreCellAlgorithmWrappers, heatDto);
+        CurrentThrowDto currentThrowDto = new CurrentThrowDto(roundNumber, heatNumber, pinsHeated);
+        scoreCellAlgorithmWrappers = scoresArrayStateKeeperService.updateScores(scoreCellAlgorithmWrappers, currentThrowDto);
         scores = scoresCellMapper.mapToDto(scoreCellAlgorithmWrappers);
     }
 

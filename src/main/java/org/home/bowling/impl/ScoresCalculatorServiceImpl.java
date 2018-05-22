@@ -27,7 +27,7 @@ public class ScoresCalculatorServiceImpl implements ScoresCalculatorService {
     }
 
     @Override
-    public List<ScoreCellAlgorithmWrapper> calculateScores(ScoresCalculationStrategy scoresCalculationStrategy) {
+    public List<ScoreCellAlgorithmWrapper> calculateScores() {
         List<ScoreCellAlgorithmWrapper> newScoreCellAlgorithmWrappers = new ArrayList<>();
 
         for (ScoreCellAlgorithmWrapper re : previousScoreCellAlgorithmWrappers) {

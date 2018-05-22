@@ -13,5 +13,4 @@ public class StrikeScoresCalculationStrategyServiceImpl implements ScoresCalcula
     public ScoreCellAlgorithmWrapper recalculateScores(List<ScoreCellAlgorithmWrapper> scoreCells) {
         throw new IllegalStateException("not supported operation");
     }
-
 }

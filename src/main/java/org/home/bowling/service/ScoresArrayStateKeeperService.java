@@ -2,6 +2,7 @@ package org.home.bowling.service;
 
 import org.home.bowling.dto.HeatDto;
 import org.home.bowling.dto.ScoreCellDto;
+import org.home.bowling.util.ScoreCellAlgorithmWrapper;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -10,5 +11,5 @@ import java.util.List;
 public interface ScoresArrayStateKeeperService {
     List<ScoreCellDto> getInitialScoresArrayState();
 
-    List<ScoreCellDto> updateScores(List<ScoreCellDto> scores, HeatDto heatDto);
+    List<ScoreCellAlgorithmWrapper> updateScores(List<ScoreCellAlgorithmWrapper> scores, HeatDto heatDto);
 }

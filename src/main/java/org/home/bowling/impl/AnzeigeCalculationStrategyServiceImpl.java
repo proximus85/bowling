@@ -1,14 +1,14 @@
 package org.home.bowling.impl;
 
-import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.ScoresCalculationStrategy;
+import org.home.bowling.util.ScoreCellAlgorithmWrapper;
 
 import java.util.List;
 
 public class AnzeigeCalculationStrategyServiceImpl implements ScoresCalculationStrategy {
 
     @Override
-    public List<ScoreCellDto> recalculateScores(List<ScoreCellDto> scoreCells) {
+    public ScoreCellAlgorithmWrapper recalculateScores(List<ScoreCellAlgorithmWrapper> scoreCells) {
 
         return scoreCells;
     }

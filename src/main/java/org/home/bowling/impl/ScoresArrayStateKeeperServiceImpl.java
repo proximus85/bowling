@@ -6,6 +6,7 @@ import org.home.bowling.service.ScoresArrayStateKeeperService;
 import org.home.bowling.service.ScoresCalculationStrategy;
 import org.home.bowling.service.ScoresCalculationStrategyPickerService;
 import org.home.bowling.service.ScoresCalculatorService;
+import org.home.bowling.util.ScoreCellAlgorithmWrapper;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -42,11 +43,13 @@ public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeper
     }
 
     @Override
-    public List<ScoreCellDto> updateScores(List<ScoreCellDto> scores, HeatDto heatDto) {
+    public List<ScoreCellAlgorithmWrapper> updateScores(List<ScoreCellAlgorithmWrapper> scores, HeatDto heatDto) {
+
         ScoresCalculationStrategy scoresCalculationStrategy =
-                scoresCalculationStrategyPickerService.pickScoresCalculationStrategy(scores, heatDto);
+                scoresCalculationStrategyPickerService.pickScoresCalculationStrategy(scores.get(scores.size() - 1), heatDto);
 
         scoresCalculatorService.setScoresCells(scores);
+        scoresCalculatorService.setCalculationAlgorithmForLastScoreCell(scoresCalculationStrategy);
         return scoresCalculatorService.calculateScores(scoresCalculationStrategy);
     }
 }

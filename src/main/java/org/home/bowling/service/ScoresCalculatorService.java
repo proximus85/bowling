@@ -1,14 +1,16 @@
 package org.home.bowling.service;
 
-import org.home.bowling.dto.ScoreCellDto;
+import org.home.bowling.util.ScoreCellAlgorithmWrapper;
 
 import javax.ejb.Local;
 import java.util.List;
 
 @Local
 public interface ScoresCalculatorService {
-    void setScoresCells(List<ScoreCellDto> scoresCells);
+    void setScoresCells(List<ScoreCellAlgorithmWrapper> scoresCells);
 
-    List<ScoreCellDto> calculateScores(ScoresCalculationStrategy scoresCalculationStrategy);
+    List<ScoreCellAlgorithmWrapper> calculateScores(ScoresCalculationStrategy scoresCalculationStrategy);
+
+    void setCalculationAlgorithmForLastScoreCell(ScoresCalculationStrategy scoresCalculationStrategy);
 }
 

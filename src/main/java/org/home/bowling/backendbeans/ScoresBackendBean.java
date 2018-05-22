@@ -4,7 +4,9 @@ import lombok.Setter;
 import org.home.bowling.dto.HeatDto;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.impl.RandomPointsGeneratorServiceImpl;
+import org.home.bowling.mapper.ScoresCellMapper;
 import org.home.bowling.service.ScoresArrayStateKeeperService;
+import org.home.bowling.util.ScoreCellAlgorithmWrapper;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -25,7 +27,12 @@ public class ScoresBackendBean {
     @EJB
     private RandomPointsGeneratorServiceImpl randomPointsGeneratorService;
 
+    @EJB
+    private ScoresCellMapper scoresCellMapper;
+
     private List<ScoreCellDto> scores;
+
+    private List<ScoreCellAlgorithmWrapper> scoreCellAlgorithmWrappers;
 
     @PostConstruct
     void initializeScoresArray() {
@@ -33,14 +40,14 @@ public class ScoresBackendBean {
     }
 
     public void addScores() {
-        //TODO move to some state holder
+        //TODO pass parameters from WEB
         Integer roundNumber = 3;
         Integer heatNumber = 1;
         Integer pinsHeated = randomPointsGeneratorService.getRandomNumber(MAX_NUMBER_OF_PINS);
 
-
         HeatDto heatDto = new HeatDto(roundNumber, heatNumber, pinsHeated);
-        scores = scoresArrayStateKeeperService.updateScores(scores, heatDto);
+        scoreCellAlgorithmWrappers = scoresArrayStateKeeperService.updateScores(scoreCellAlgorithmWrappers, heatDto);
+        scores = scoresCellMapper.mapToDto(scoreCellAlgorithmWrappers);
     }
 
     public List<ScoreCellDto> getScores() {

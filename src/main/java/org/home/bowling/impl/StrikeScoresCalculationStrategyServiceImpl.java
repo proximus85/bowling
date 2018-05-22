@@ -1,7 +1,7 @@
 package org.home.bowling.impl;
 
-import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.ScoresCalculationStrategy;
+import org.home.bowling.util.ScoreCellAlgorithmWrapper;
 
 import javax.ejb.Stateless;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 public class StrikeScoresCalculationStrategyServiceImpl implements ScoresCalculationStrategy {
 
     @Override
-    public List<ScoreCellDto> recalculateScores(List<ScoreCellDto> scoreCells) {
+    public ScoreCellAlgorithmWrapper recalculateScores(List<ScoreCellAlgorithmWrapper> scoreCells) {
         return scoreCells;
     }
 

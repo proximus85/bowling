@@ -21,7 +21,6 @@ public class ScoresCalculatorServiceImpl implements ScoresCalculatorService {
     @Override
     public void setCalculationAlgorithmForLastScoreCell(ScoresCalculationStrategy scoresCalculationStrategy) {
         int indexOfLastElement = scoreCellAlgorithmWrappers.size() - 1;
-
         scoreCellAlgorithmWrappers.get(indexOfLastElement)
                 .setScoresCalculationStrategy(scoresCalculationStrategy);
     }
@@ -31,8 +30,11 @@ public class ScoresCalculatorServiceImpl implements ScoresCalculatorService {
         List<ScoreCellAlgorithmWrapper> newScoreCellAlgorithmWrappers = new ArrayList<>();
 
         for (int i = 0; i < scoreCellAlgorithmWrappers.size(); i++) {
-            newScoreCellAlgorithmWrappers.add(scoreCellAlgorithmWrappers.get(i).getScoresCalculationStrategy()
-                    .recalculateScores(newScoreCellAlgorithmWrappers, i));
+            ScoreCellAlgorithmWrapper scoreCellAlgorithmWrapper = scoreCellAlgorithmWrappers.get(i)
+                    .getScoresCalculationStrategy()
+                    .recalculateScores(scoreCellAlgorithmWrappers, i);
+
+            newScoreCellAlgorithmWrappers.add(scoreCellAlgorithmWrapper);
         }
         return newScoreCellAlgorithmWrappers;
     }

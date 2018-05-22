@@ -1,7 +1,7 @@
 package org.home.bowling.impl;
 
 import org.home.bowling.dto.ScoreCellAlgorithmWrapper;
-import org.home.bowling.service.ScoresCalculationStrategy;
+import org.home.bowling.service.ScoresCalculationStrategyService;
 import org.home.bowling.service.ScoresCalculatorService;
 
 import javax.ejb.Stateless;
@@ -19,10 +19,10 @@ public class ScoresCalculatorServiceImpl implements ScoresCalculatorService {
     }
 
     @Override
-    public void setCalculationAlgorithmForLastScoreCell(ScoresCalculationStrategy scoresCalculationStrategy) {
+    public void setCalculationAlgorithmForLastScoreCell(ScoresCalculationStrategyService scoresCalculationStrategyService) {
         int indexOfLastElement = scoreCellAlgorithmWrappers.size() - 1;
         scoreCellAlgorithmWrappers.get(indexOfLastElement)
-                .setScoresCalculationStrategy(scoresCalculationStrategy);
+                .setScoresCalculationStrategyService(scoresCalculationStrategyService);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class ScoresCalculatorServiceImpl implements ScoresCalculatorService {
 
         for (int i = 0; i < scoreCellAlgorithmWrappers.size(); i++) {
             ScoreCellAlgorithmWrapper scoreCellAlgorithmWrapper = scoreCellAlgorithmWrappers.get(i)
-                    .getScoresCalculationStrategy()
+                    .getScoresCalculationStrategyService()
                     .recalculateScores(scoreCellAlgorithmWrappers, i);
 
             newScoreCellAlgorithmWrappers.add(scoreCellAlgorithmWrapper);

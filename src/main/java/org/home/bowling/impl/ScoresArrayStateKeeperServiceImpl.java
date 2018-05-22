@@ -4,7 +4,7 @@ import org.home.bowling.dto.CurrentThrowDto;
 import org.home.bowling.dto.ScoreCellAlgorithmWrapper;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.ScoresArrayStateKeeperService;
-import org.home.bowling.service.ScoresCalculationStrategy;
+import org.home.bowling.service.ScoresCalculationStrategyService;
 import org.home.bowling.service.ScoresCalculationStrategyPickerService;
 import org.home.bowling.service.ScoresCalculatorService;
 
@@ -46,11 +46,11 @@ public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeper
     public List<ScoreCellAlgorithmWrapper> updateScores(List<ScoreCellAlgorithmWrapper> scores,
                                                         CurrentThrowDto currentThrowDto) {
 
-        ScoresCalculationStrategy scoresCalculationStrategy =
+        ScoresCalculationStrategyService scoresCalculationStrategyService =
                 scoresCalculationStrategyPickerService.pickScoresCalculationStrategy(scores, currentThrowDto);
 
         scoresCalculatorService.setScoresCells(scores);
-        scoresCalculatorService.setCalculationAlgorithmForLastScoreCell(scoresCalculationStrategy);
+        scoresCalculatorService.setCalculationAlgorithmForLastScoreCell(scoresCalculationStrategyService);
         return scoresCalculatorService.calculateScores();
     }
 }

@@ -3,8 +3,8 @@ package org.home.bowling.impl;
 import org.home.bowling.dto.CurrentThrowDto;
 import org.home.bowling.dto.ScoreCellAlgorithmWrapper;
 import org.home.bowling.dto.ScoreCellDto;
-import org.home.bowling.service.ScoresCalculationStrategy;
 import org.home.bowling.service.ScoresCalculationStrategyPickerService;
+import org.home.bowling.service.ScoresCalculationStrategyService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -16,29 +16,30 @@ public class ScoresCalculationStrategyPickerServiceImpl implements ScoresCalcula
     public static final int PINS_NUMBER = 10;
     public static final int ROUNDS_NUMBER = 10;
 
-    @EJB
-    private StrikeScoresCalculationStrategyServiceImpl strikeScoresCalculationStrategyService;
+    @EJB(beanName = "StrikeScoresCalculationStrategyServiceImpl")
+    private ScoresCalculationStrategyService strikeScoresCalculationStrategyServiceImpl;
 
-    @EJB
-    private SpareCalculationServiceImpl spareCalculationService;
+    @EJB(beanName = "SpareCalculationServiceImpl")
+    private ScoresCalculationStrategyService spareCalculationServiceImpl;
 
-    @EJB
-    private AnzeigeCalculationStrategyServiceImpl anzeigeCalculationStrategyService;
+    @EJB(beanName = "AnzeigeCalculationStrategyServiceImpl")
+    private ScoresCalculationStrategyService anzeigeCalculationStrategyServiceImpl;
 
 
     @Override
-    public ScoresCalculationStrategy pickScoresCalculationStrategy(List<ScoreCellAlgorithmWrapper> scoreCellDtoList,
-                                                                   CurrentThrowDto currentThrowDto) {
+    public ScoresCalculationStrategyService pickScoresCalculationStrategy(List<ScoreCellAlgorithmWrapper> scoreCellDtoList,
+                                                                          CurrentThrowDto currentThrowDto) {
 
         if (currentThrowDto.getPinsHited() == PINS_NUMBER && currentThrowDto.getRoundNumber() < ROUNDS_NUMBER) {
-            return strikeScoresCalculationStrategyService;
+            return strikeScoresCalculationStrategyServiceImpl;
         }
 
         if (getScoresSumForCurrentRound(scoreCellDtoList, currentThrowDto) == PINS_NUMBER
                 && currentThrowDto.getRoundNumber() < ROUNDS_NUMBER) {
+            return spareCalculationServiceImpl;
         }
 
-        return anzeigeCalculationStrategyService;
+        return anzeigeCalculationStrategyServiceImpl;
     }
 
     private int getScoresSumForCurrentRound(List<ScoreCellAlgorithmWrapper> scoreCellDtoList,

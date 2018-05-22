@@ -11,6 +11,6 @@ public interface ScoresCalculatorService {
 
     List<ScoreCellAlgorithmWrapper> calculateScores();
 
-    void setCalculationAlgorithmForLastScoreCell(ScoresCalculationStrategy scoresCalculationStrategy);
+    void setCalculationAlgorithmForLastScoreCell(ScoresCalculationStrategyService scoresCalculationStrategyService);
 }
 

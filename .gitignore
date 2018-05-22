@@ -1,4 +1,5 @@
 .gitignore
 .idea/
 bowling.iml
-inerhalb.txt
+inhalt.txt
+target

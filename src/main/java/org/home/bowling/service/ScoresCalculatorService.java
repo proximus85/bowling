@@ -7,7 +7,7 @@ import java.util.List;
 
 @Local
 public interface ScoresCalculatorService {
-    void setScoresCells(List<ScoreCellAlgorithmWrapper> scoresCells);
+    void setScoreCellAlgorithmWrapper(List<ScoreCellAlgorithmWrapper> scoresCells);
 
     List<ScoreCellAlgorithmWrapper> calculateScores();
 

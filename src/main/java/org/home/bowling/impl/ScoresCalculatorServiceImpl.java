@@ -14,7 +14,7 @@ public class ScoresCalculatorServiceImpl implements ScoresCalculatorService {
     private List<ScoreCellAlgorithmWrapper> scoreCellAlgorithmWrappers;
 
     @Override
-    public void setScoresCells(List<ScoreCellAlgorithmWrapper> scoreCellAlgorithmWrappers) {
+    public void setScoreCellAlgorithmWrapper(List<ScoreCellAlgorithmWrapper> scoreCellAlgorithmWrappers) {
         this.scoreCellAlgorithmWrappers = scoreCellAlgorithmWrappers;
     }
 

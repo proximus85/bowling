@@ -5,6 +5,6 @@ import javax.ejb.Stateless;
 @Stateless
 public class RandomPointsGeneratorServiceImpl {
     public Integer getRandomNumber(int maxRange) {
-        return (int) Math.random() * maxRange;
+        return (int) (Math.random() * maxRange);
     }
 }

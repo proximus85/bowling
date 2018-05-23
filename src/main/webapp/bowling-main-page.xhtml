@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+>
 
 <ui:composition template="/templates/page-template.xhtml">
     <ui:param name="pageTitle" value="Lets start bowling !!!"/>
@@ -14,9 +14,10 @@
             <tr>
                 <ui:repeat value="#{scoresBackendBean.scores}" var="scoresCell">
                     <th>
-                        <h:outputText value="#{scoresCell.roundNo}"/>
+                        <h:outputText value="#{scoresCell.roundNo + 1}"/>
                     </th>
                 </ui:repeat>
+                <th>Sum</th>
             </tr>
             <tr>
                 <ui:repeat value="#{scoresBackendBean.scores}" var="scoreCell">
@@ -33,13 +34,18 @@
                         <h:outputText value="#{scoresCell.totalScores}"/>
                     </td>
                 </ui:repeat>
+                <td>
+                    <h:outputText value="#{scoresBackendBean.result}"/>
+                </td>
             </tr>
         </table>
+        <h:form>
+            <h:inputText id="hitedPinsNumberId" value="#{scoresBackendBean.hitedPinsNumber}"/>
 
-        <h:commandLink action="#{scoresBackendBean.addScores()}">
-            <f:ajax render=":scores-array-form-id"/>
-            <h:graphicImage id="bowlButtonId" styleClass="bowlButton" value="resources/bowling/images/bowl.jpg"/>
-        </h:commandLink>
+            <h:commandButton value="submit" type="submit" action="#{scoresBackendBean.updateBowlingArray()}">
+                <!--<f:ajax render=":scores-array-form-id"/>-->
+            </h:commandButton>
+        </h:form>
     </ui:define>
 </ui:composition>
 </html>

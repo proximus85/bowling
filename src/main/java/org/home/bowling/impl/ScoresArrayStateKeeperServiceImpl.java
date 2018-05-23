@@ -3,22 +3,17 @@ package org.home.bowling.impl;
 import org.home.bowling.dto.CurrentThrowDto;
 import org.home.bowling.dto.ScoreCellAlgorithmWrapper;
 import org.home.bowling.dto.ScoreCellDto;
-import org.home.bowling.service.ScoresArrayStateKeeperService;
-import org.home.bowling.service.ScoresCalculationStrategyService;
-import org.home.bowling.service.ScoresCalculationStrategyPickerService;
-import org.home.bowling.service.ScoresCalculatorService;
+import org.home.bowling.service.*;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Stateless
 public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeperService {
 
-    public static final int SCORES_ARRAY_LENGTH = 10;
-    public static final int INITIAL_TOTAL_SCORES = 10;
+    private static final int SCORES_ARRAY_LENGTH = 10;
 
     @EJB
     private ScoresCalculationStrategyPickerService scoresCalculationStrategyPickerService;
@@ -26,30 +21,45 @@ public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeper
     @EJB
     private ScoresCalculatorService scoresCalculatorService;
 
+    @EJB
+    private PinsStateService pinsStateService;
+
     @Override
-    public List<ScoreCellDto> getInitialScoresArrayState() {
-        List<ScoreCellDto> scores = new ArrayList<>();
-        for (int i = 1; i <= SCORES_ARRAY_LENGTH; i++) {
+    public List<ScoreCellAlgorithmWrapper> getInitialScoresArrayState() {//TODO move to initializationSErvice
+        List<ScoreCellAlgorithmWrapper> scores = new ArrayList<>();
+        for (int i = 0; i < SCORES_ARRAY_LENGTH; i++) {
 
             ScoreCellDto scoreCellDto = ScoreCellDto.builder()
                     .roundNo(i)
-                    .scores(Arrays.asList(1, 2))
-                    .totalScores(INITIAL_TOTAL_SCORES)
+                    .scores(new ArrayList<>())
+                    .totalScores(0)
                     .build();
 
-            scores.add(scoreCellDto);
+            ScoreCellAlgorithmWrapper scoreCellAlgorithmWrapper = ScoreCellAlgorithmWrapper.builder()
+                    .scoreCellDto(scoreCellDto)
+                    .scoresCalculationStrategyService(new ScoresCalculationStrategyService() {
+                        @Override
+                        public ScoreCellAlgorithmWrapper recalculateScores(List<ScoreCellAlgorithmWrapper> scoreCells, int cellIndex) {
+                            return scoreCells.get(cellIndex);
+                        }
+                    })
+                    .build();
+
+            scores.add(scoreCellAlgorithmWrapper);
         }
         return scores;
     }
 
     @Override
-    public List<ScoreCellAlgorithmWrapper> updateScores(List<ScoreCellAlgorithmWrapper> scores,
+    public List<ScoreCellAlgorithmWrapper> updateScores(List<ScoreCellAlgorithmWrapper> scoreCellAlgorithmWrappers,
                                                         CurrentThrowDto currentThrowDto) {
 
-        ScoresCalculationStrategyService scoresCalculationStrategyService =
-                scoresCalculationStrategyPickerService.pickScoresCalculationStrategy(scores, currentThrowDto);
+        pinsStateService.updatePinsState(scoreCellAlgorithmWrappers, currentThrowDto);
 
-        scoresCalculatorService.setScoresCells(scores);
+        ScoresCalculationStrategyService scoresCalculationStrategyService =
+                scoresCalculationStrategyPickerService.pickScoresCalculationStrategy(scoreCellAlgorithmWrappers, currentThrowDto);
+
+        scoresCalculatorService.setScoreCellAlgorithmWrapper(scoreCellAlgorithmWrappers);
         scoresCalculatorService.setCalculationAlgorithmForLastScoreCell(scoresCalculationStrategyService);
         return scoresCalculatorService.calculateScores();
     }

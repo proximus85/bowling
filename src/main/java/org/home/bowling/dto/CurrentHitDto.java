@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CurrentThrowDto {
+public class CurrentHitDto {
     Integer roundNumber;
     Integer throwNumber;
     Integer pinsHited;

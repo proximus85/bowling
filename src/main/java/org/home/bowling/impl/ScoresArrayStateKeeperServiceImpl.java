@@ -1,7 +1,7 @@
 package org.home.bowling.impl;
 
-import org.home.bowling.dto.CurrentThrowDto;
 import org.home.bowling.dto.CellWrapper;
+import org.home.bowling.dto.CurrentHitDto;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.*;
 
@@ -37,7 +37,7 @@ public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeper
 
             CellWrapper cellWrapper = CellWrapper.builder()
                     .scoreCellDto(scoreCellDto)
-                    .scoresCalculationStrategyService(new ScoresCalculationStrategy() {
+                    .scoresCalculationStrategy(new ScoresCalculationStrategy() {
                         @Override
                         public CellWrapper recalculateScores(List<CellWrapper> scoreCells, int cellIndex) {
                             return scoreCells.get(cellIndex);
@@ -52,15 +52,15 @@ public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeper
 
     @Override
     public void updateScores(List<CellWrapper> cellWrappers,
-                             CurrentThrowDto currentThrowDto) {
+                             CurrentHitDto currentHitDto) {
 
-        pinsStateService.updatePinsState(cellWrappers, currentThrowDto);
+        pinsStateService.updatePinsState(cellWrappers, currentHitDto);
 
         ScoresCalculationStrategy scoresCalculationStrategy =
-                scoresCalculationStrategyPickerService.pickScoresCalculationStrategy(cellWrappers, currentThrowDto);
+                scoresCalculationStrategyPickerService.pickScoresCalculationStrategy(cellWrappers, currentHitDto);
 
         scoresCalculatorService.setScoreCellAlgorithmWrapper(cellWrappers);
-        scoresCalculatorService.setCalculationAlgorithmForLastScoreCell(scoresCalculationStrategy);
+        scoresCalculatorService.setScoresCalculationStrategyForCurrentHit(scoresCalculationStrategy, currentHitDto);
         scoresCalculatorService.calculateScores();
     }
 }

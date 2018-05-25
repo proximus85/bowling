@@ -1,6 +1,6 @@
 package org.home.bowling.impl;
 
-import org.home.bowling.dto.CurrentThrowDto;
+import org.home.bowling.dto.CurrentHitDto;
 import org.home.bowling.dto.CellWrapper;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.ScoresCalculationStrategy;
@@ -28,14 +28,14 @@ public class ScoresCalculationStrategyPickerServiceImpl implements ScoresCalcula
 
     @Override
     public ScoresCalculationStrategy pickScoresCalculationStrategy(List<CellWrapper> scoreCellDtoList,
-                                                                   CurrentThrowDto currentThrowDto) {
+                                                                   CurrentHitDto currentHitDto) {
 
-        if (currentThrowDto.getPinsHited() == PINS_NUMBER && currentThrowDto.getRoundNumber() < ROUNDS_NUMBER) {
+        if (currentHitDto.getPinsHited() == PINS_NUMBER && currentHitDto.getRoundNumber() < ROUNDS_NUMBER) {
             return strikeScoresCalculationStrategyImpl;
         }
 
-        if (getScoresSumForCurrentRound(scoreCellDtoList, currentThrowDto) == PINS_NUMBER
-                && currentThrowDto.getRoundNumber() < ROUNDS_NUMBER) {
+        if (getScoresSumForCurrentRound(scoreCellDtoList, currentHitDto) == PINS_NUMBER
+                && currentHitDto.getRoundNumber() < ROUNDS_NUMBER) {
             return spareCalculationServiceImpl;
         }
 
@@ -43,9 +43,9 @@ public class ScoresCalculationStrategyPickerServiceImpl implements ScoresCalcula
     }
 
     private int getScoresSumForCurrentRound(List<CellWrapper> scoreCellDtoList,
-                                            CurrentThrowDto currentThrowDto) {
+                                            CurrentHitDto currentHitDto) {
         int totalScores = 0;
-        ScoreCellDto scoreCellDto = scoreCellDtoList.get(currentThrowDto.getRoundNumber()).getScoreCellDto();
+        ScoreCellDto scoreCellDto = scoreCellDtoList.get(currentHitDto.getRoundNumber()).getScoreCellDto();
 
         for (Integer score : scoreCellDto.getScores()) {
             totalScores += score;

@@ -2,7 +2,7 @@ package org.home.bowling.backendbeans;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.home.bowling.dto.CurrentThrowDto;
+import org.home.bowling.dto.CurrentHitDto;
 import org.home.bowling.dto.CellWrapper;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.impl.RandomPointsGeneratorServiceImpl;
@@ -57,8 +57,8 @@ public class ScoresBackendBean {
 
     public void updateBowlingArray() {
         if (counter < 21) {
-            CurrentThrowDto currentThrowDto = new CurrentThrowDto(roundNumber, hitNumber, hitedPinsNumber);
-            scoresArrayStateKeeperService.updateScores(cellWrappers, currentThrowDto);
+            CurrentHitDto currentHitDto = new CurrentHitDto(roundNumber, hitNumber, hitedPinsNumber);
+            scoresArrayStateKeeperService.updateScores(cellWrappers, currentHitDto);
             scores = scoresCellMapper.mapToDto(cellWrappers);
             counter++;
             updateHitNumber();

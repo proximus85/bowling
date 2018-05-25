@@ -1,6 +1,7 @@
 package org.home.bowling.service;
 
 import org.home.bowling.dto.CellWrapper;
+import org.home.bowling.dto.CurrentHitDto;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -11,6 +12,6 @@ public interface ScoresCalculatorService {
 
     void calculateScores();
 
-    void setCalculationAlgorithmForLastScoreCell(ScoresCalculationStrategy scoresCalculationStrategy);
+    void setScoresCalculationStrategyForCurrentHit(ScoresCalculationStrategy scoresCalculationStrategy, CurrentHitDto currentHitDto);
 }
 

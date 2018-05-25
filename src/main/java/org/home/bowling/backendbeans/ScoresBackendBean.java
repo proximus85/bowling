@@ -3,7 +3,7 @@ package org.home.bowling.backendbeans;
 import lombok.Getter;
 import lombok.Setter;
 import org.home.bowling.dto.CurrentThrowDto;
-import org.home.bowling.dto.ScoreCellAlgorithmWrapper;
+import org.home.bowling.dto.CellWrapper;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.impl.RandomPointsGeneratorServiceImpl;
 import org.home.bowling.mapper.ScoresCellMapper;
@@ -39,7 +39,7 @@ public class ScoresBackendBean {
     private Integer hitedPinsNumber;
     private Integer counter = 0;
     private Integer result = 0;
-    private List<ScoreCellAlgorithmWrapper> scoreCellAlgorithmWrappers;
+    private List<CellWrapper> cellWrappers;
 
     public Integer getHitedPinsNumber() {
         return hitedPinsNumber;
@@ -51,15 +51,15 @@ public class ScoresBackendBean {
 
     @PostConstruct
     void initializeScoresArray() {
-        scoreCellAlgorithmWrappers = scoresArrayStateKeeperService.getInitialScoresArrayState();
-        scores = scoresCellMapper.mapToDto(scoreCellAlgorithmWrappers);
+        cellWrappers = scoresArrayStateKeeperService.getInitialScoresArrayState();
+        scores = scoresCellMapper.mapToDto(cellWrappers);
     }
 
     public void updateBowlingArray() {
         if (counter < 21) {
             CurrentThrowDto currentThrowDto = new CurrentThrowDto(roundNumber, hitNumber, hitedPinsNumber);
-            scoreCellAlgorithmWrappers = scoresArrayStateKeeperService.updateScores(scoreCellAlgorithmWrappers, currentThrowDto);
-            scores = scoresCellMapper.mapToDto(scoreCellAlgorithmWrappers);
+            scoresArrayStateKeeperService.updateScores(cellWrappers, currentThrowDto);
+            scores = scoresCellMapper.mapToDto(cellWrappers);
             counter++;
             updateHitNumber();
             updateRoundNumber();

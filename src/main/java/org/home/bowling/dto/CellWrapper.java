@@ -5,10 +5,10 @@ import org.home.bowling.service.ScoresCalculationStrategyService;
 
 @Getter
 @Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class ScoreCellAlgorithmWrapper {
+public class CellWrapper {
     private ScoreCellDto scoreCellDto;
     private ScoresCalculationStrategyService scoresCalculationStrategyService;
 }

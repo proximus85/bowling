@@ -1,7 +1,7 @@
 package org.home.bowling.impl;
 
 import org.home.bowling.dto.CurrentThrowDto;
-import org.home.bowling.dto.ScoreCellAlgorithmWrapper;
+import org.home.bowling.dto.CellWrapper;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.ScoresCalculationStrategyPickerService;
 import org.home.bowling.service.ScoresCalculationStrategyService;
@@ -27,7 +27,7 @@ public class ScoresCalculationStrategyPickerServiceImpl implements ScoresCalcula
 
 
     @Override
-    public ScoresCalculationStrategyService pickScoresCalculationStrategy(List<ScoreCellAlgorithmWrapper> scoreCellDtoList,
+    public ScoresCalculationStrategyService pickScoresCalculationStrategy(List<CellWrapper> scoreCellDtoList,
                                                                           CurrentThrowDto currentThrowDto) {
 
         if (currentThrowDto.getPinsHited() == PINS_NUMBER && currentThrowDto.getRoundNumber() < ROUNDS_NUMBER) {
@@ -42,7 +42,7 @@ public class ScoresCalculationStrategyPickerServiceImpl implements ScoresCalcula
         return anzeigeCalculationStrategyServiceImpl;
     }
 
-    private int getScoresSumForCurrentRound(List<ScoreCellAlgorithmWrapper> scoreCellDtoList,
+    private int getScoresSumForCurrentRound(List<CellWrapper> scoreCellDtoList,
                                             CurrentThrowDto currentThrowDto) {
         int totalScores = 0;
         ScoreCellDto scoreCellDto = scoreCellDtoList.get(currentThrowDto.getRoundNumber()).getScoreCellDto();

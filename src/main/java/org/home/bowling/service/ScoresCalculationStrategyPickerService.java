@@ -1,13 +1,13 @@
 package org.home.bowling.service;
 
 import org.home.bowling.dto.CurrentThrowDto;
-import org.home.bowling.dto.ScoreCellAlgorithmWrapper;
+import org.home.bowling.dto.CellWrapper;
 
 import javax.ejb.Local;
 import java.util.List;
 
 @Local
 public interface ScoresCalculationStrategyPickerService {
-    ScoresCalculationStrategyService pickScoresCalculationStrategy(List<ScoreCellAlgorithmWrapper> scoreCellAlgorithmWrappers,
+    ScoresCalculationStrategyService pickScoresCalculationStrategy(List<CellWrapper> cellWrappers,
                                                                    CurrentThrowDto scoreCellDto);
 }

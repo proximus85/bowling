@@ -1,11 +1,10 @@
 package org.home.bowling.impl;
 
-import org.home.bowling.dto.ScoreCellAlgorithmWrapper;
+import org.home.bowling.dto.CellWrapper;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.ScoresCalculationStrategyService;
 import org.home.bowling.utils.ScoreCalculatorHelper;
 
-import javax.ejb.Local;
 import javax.ejb.Stateless;
 import java.util.List;
 
@@ -13,10 +12,10 @@ import java.util.List;
 public class AnzeigeCalculationStrategyServiceImpl implements ScoresCalculationStrategyService {
 
     @Override
-    public ScoreCellAlgorithmWrapper recalculateScores(List<ScoreCellAlgorithmWrapper> scoreCells, int cellIndex) {
-        ScoreCellAlgorithmWrapper scoreCellAlgorithmWrapper = scoreCells.get(cellIndex);
-        ScoreCellDto scoreCellDto = scoreCellAlgorithmWrapper.getScoreCellDto();
+    public CellWrapper recalculateScores(List<CellWrapper> scoreCells, int cellIndex) {
+        CellWrapper cellWrapper = scoreCells.get(cellIndex);
+        ScoreCellDto scoreCellDto = cellWrapper.getScoreCellDto();
         scoreCellDto.setTotalScores(ScoreCalculatorHelper.calculateTotalSum(scoreCellDto.getScores()));
-        return scoreCellAlgorithmWrapper;
+        return cellWrapper;
     }
 }

@@ -1,7 +1,7 @@
 package org.home.bowling.impl;
 
-import org.home.bowling.dto.CurrentHitDto;
 import org.home.bowling.dto.CellWrapper;
+import org.home.bowling.dto.CurrentHitDto;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.ScoresCalculationStrategy;
 import org.home.bowling.service.ScoresCalculationStrategyPickerService;
@@ -42,15 +42,12 @@ public class ScoresCalculationStrategyPickerServiceImpl implements ScoresCalcula
         return anzeigeCalculationStrategyServiceImpl;
     }
 
-    private int getScoresSumForCurrentRound(List<CellWrapper> scoreCellDtoList,
-                                            CurrentHitDto currentHitDto) {
+    private int getScoresSumForCurrentRound(List<CellWrapper> scoreCellDtoList,   CurrentHitDto currentHitDto) {
         int totalScores = 0;
         ScoreCellDto scoreCellDto = scoreCellDtoList.get(currentHitDto.getRoundNumber()).getScoreCellDto();
-
         for (Integer score : scoreCellDto.getScores()) {
             totalScores += score;
         }
-
         return totalScores;
     }
 }

@@ -19,10 +19,13 @@ public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeper
     private ScoresCalculationStrategyPickerService scoresCalculationStrategyPickerService;
 
     @EJB
-    private ScoresCalculatorService scoresCalculatorService;
+    private ArrayScoresCalculatorService arrayScoresCalculatorService;
 
     @EJB
     private PinsStateService pinsStateService;
+
+    @EJB
+    private ScoresStateService scoresStateService;
 
     @Override
     public List<CellWrapper> getInitialScoresArrayState() {//TODO move to initializationSErvice
@@ -51,16 +54,8 @@ public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeper
     }
 
     @Override
-    public void updateScores(List<CellWrapper> cellWrappers,
-                             CurrentHitDto currentHitDto) {
-
-        pinsStateService.updatePinsState(cellWrappers, currentHitDto);
-
-        ScoresCalculationStrategy scoresCalculationStrategy =
-                scoresCalculationStrategyPickerService.pickScoresCalculationStrategy(cellWrappers, currentHitDto);
-
-        scoresCalculatorService.setScoreCellAlgorithmWrapper(cellWrappers);
-        scoresCalculatorService.setScoresCalculationStrategyForCurrentHit(scoresCalculationStrategy, currentHitDto);
-        scoresCalculatorService.calculateScores();
+    public void updateScores(List<CellWrapper> cellsWrappers, CurrentHitDto currentHitDto) {
+        pinsStateService.updatePinsState(cellsWrappers, currentHitDto);
+        scoresStateService.updateScoresState(cellsWrappers, currentHitDto);
     }
 }

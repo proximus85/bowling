@@ -8,6 +8,6 @@ import java.util.List;
 
 @Local
 public interface ScoresCalculationStrategyPickerService {
-    ScoresCalculationStrategyService pickScoresCalculationStrategy(List<CellWrapper> cellWrappers,
-                                                                   CurrentThrowDto scoreCellDto);
+    ScoresCalculationStrategy pickScoresCalculationStrategy(List<CellWrapper> cellWrappers,
+                                                            CurrentThrowDto scoreCellDto);
 }

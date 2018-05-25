@@ -6,6 +6,6 @@ import javax.ejb.Local;
 import java.util.List;
 
 @Local
-public interface ScoresCalculationStrategyService {//TODO rename to ScoresCalculation
+public interface ScoresCalculationStrategy {
     CellWrapper recalculateScores(List<CellWrapper> scoreCells, int cellIndex);
 }

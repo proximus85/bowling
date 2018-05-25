@@ -1,7 +1,7 @@
 package org.home.bowling.dto;
 
 import lombok.*;
-import org.home.bowling.service.ScoresCalculationStrategyService;
+import org.home.bowling.service.ScoresCalculationStrategy;
 
 @Getter
 @Setter
@@ -10,5 +10,5 @@ import org.home.bowling.service.ScoresCalculationStrategyService;
 @NoArgsConstructor
 public class CellWrapper {
     private ScoreCellDto scoreCellDto;
-    private ScoresCalculationStrategyService scoresCalculationStrategyService;
+    private ScoresCalculationStrategy scoresCalculationStrategy;
 }

@@ -2,14 +2,14 @@ package org.home.bowling.impl;
 
 import org.home.bowling.dto.CellWrapper;
 import org.home.bowling.dto.ScoreCellDto;
-import org.home.bowling.service.ScoresCalculationStrategyService;
+import org.home.bowling.service.ScoresCalculationStrategy;
 import org.home.bowling.utils.ScoreCalculatorHelper;
 
 import javax.ejb.Stateless;
 import java.util.List;
 
 @Stateless
-public class StrikeScoresCalculationStrategyServiceImpl implements ScoresCalculationStrategyService {
+public class SpareCalculationImpl implements ScoresCalculationStrategy {
 
     @Override
     public CellWrapper recalculateScores(List<CellWrapper> scoreCells, int cellIndex) {
@@ -17,7 +17,7 @@ public class StrikeScoresCalculationStrategyServiceImpl implements ScoresCalcula
         ScoreCellDto scoreCellDto = cellWrapper.getScoreCellDto();
 
         Integer totalPoints = ScoreCalculatorHelper.calculateTotalSum(scoreCellDto.getScores()) +
-                ScoreCalculatorHelper.calculateTotalSum(scoreCells.get(cellIndex + 1).getScoreCellDto().getScores());
+                scoreCells.get(cellIndex + 1).getScoreCellDto().getScores().get(0);
 
         scoreCellDto.setTotalScores(totalPoints);
         return cellWrapper;

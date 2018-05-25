@@ -3,8 +3,8 @@ package org.home.bowling.impl;
 import org.home.bowling.dto.CurrentThrowDto;
 import org.home.bowling.dto.CellWrapper;
 import org.home.bowling.dto.ScoreCellDto;
+import org.home.bowling.service.ScoresCalculationStrategy;
 import org.home.bowling.service.ScoresCalculationStrategyPickerService;
-import org.home.bowling.service.ScoresCalculationStrategyService;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -16,22 +16,22 @@ public class ScoresCalculationStrategyPickerServiceImpl implements ScoresCalcula
     public static final int PINS_NUMBER = 10;
     public static final int ROUNDS_NUMBER = 10;
 
-    @EJB(beanName = "StrikeScoresCalculationStrategyServiceImpl")
-    private ScoresCalculationStrategyService strikeScoresCalculationStrategyServiceImpl;
+    @EJB(beanName = "StrikeScoresCalculationStrategyImpl")
+    private ScoresCalculationStrategy strikeScoresCalculationStrategyImpl;
 
-    @EJB(beanName = "SpareCalculationServiceImpl")
-    private ScoresCalculationStrategyService spareCalculationServiceImpl;
+    @EJB(beanName = "SpareCalculationImpl")
+    private ScoresCalculationStrategy spareCalculationServiceImpl;
 
-    @EJB(beanName = "AnzeigeCalculationStrategyServiceImpl")
-    private ScoresCalculationStrategyService anzeigeCalculationStrategyServiceImpl;
+    @EJB(beanName = "AnzeigeCalculationStrategyImpl")
+    private ScoresCalculationStrategy anzeigeCalculationStrategyServiceImpl;
 
 
     @Override
-    public ScoresCalculationStrategyService pickScoresCalculationStrategy(List<CellWrapper> scoreCellDtoList,
-                                                                          CurrentThrowDto currentThrowDto) {
+    public ScoresCalculationStrategy pickScoresCalculationStrategy(List<CellWrapper> scoreCellDtoList,
+                                                                   CurrentThrowDto currentThrowDto) {
 
         if (currentThrowDto.getPinsHited() == PINS_NUMBER && currentThrowDto.getRoundNumber() < ROUNDS_NUMBER) {
-            return strikeScoresCalculationStrategyServiceImpl;
+            return strikeScoresCalculationStrategyImpl;
         }
 
         if (getScoresSumForCurrentRound(scoreCellDtoList, currentThrowDto) == PINS_NUMBER

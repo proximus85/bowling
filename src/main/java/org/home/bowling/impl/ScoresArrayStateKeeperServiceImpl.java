@@ -37,7 +37,7 @@ public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeper
 
             CellWrapper cellWrapper = CellWrapper.builder()
                     .scoreCellDto(scoreCellDto)
-                    .scoresCalculationStrategyService(new ScoresCalculationStrategyService() {
+                    .scoresCalculationStrategyService(new ScoresCalculationStrategy() {
                         @Override
                         public CellWrapper recalculateScores(List<CellWrapper> scoreCells, int cellIndex) {
                             return scoreCells.get(cellIndex);
@@ -56,11 +56,11 @@ public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeper
 
         pinsStateService.updatePinsState(cellWrappers, currentThrowDto);
 
-        ScoresCalculationStrategyService scoresCalculationStrategyService =
+        ScoresCalculationStrategy scoresCalculationStrategy =
                 scoresCalculationStrategyPickerService.pickScoresCalculationStrategy(cellWrappers, currentThrowDto);
 
         scoresCalculatorService.setScoreCellAlgorithmWrapper(cellWrappers);
-        scoresCalculatorService.setCalculationAlgorithmForLastScoreCell(scoresCalculationStrategyService);
+        scoresCalculatorService.setCalculationAlgorithmForLastScoreCell(scoresCalculationStrategy);
         scoresCalculatorService.calculateScores();
     }
 }

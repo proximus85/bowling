@@ -30,7 +30,7 @@ public class ScoresCalculationStrategyPickerServiceImpl implements ScoresCalcula
     public ScoresCalculationStrategy pickScoresCalculationStrategy(List<CellWrapper> scoreCellDtoList,
                                                                    CurrentHitDto currentHitDto) {
 
-        if (currentHitDto.getPinsHited() == PINS_NUMBER && currentHitDto.getRoundNumber() < ROUNDS_NUMBER) {
+        if (currentHitDto.getHitPinsNumber() == PINS_NUMBER && currentHitDto.getRoundNumber() < ROUNDS_NUMBER) {
             return strikeScoresCalculationStrategyImpl;
         }
 

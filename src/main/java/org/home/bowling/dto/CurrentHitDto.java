@@ -8,5 +8,5 @@ import lombok.Getter;
 public class CurrentHitDto {
     Integer roundNumber;
     Integer throwNumber;
-    Integer pinsHited;
+    Integer hitPinsNumber;
 }

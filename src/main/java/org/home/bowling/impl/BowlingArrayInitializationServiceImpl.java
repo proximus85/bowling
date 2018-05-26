@@ -18,11 +18,7 @@ public class BowlingArrayInitializationServiceImpl implements BowlingArrayInitia
         List<ScoreCellAlgorithmDto> scores = new ArrayList<>();
         for (int i = 0; i < SCORES_ARRAY_LENGTH; i++) {
 
-            ScoreCellDto scoreCellDto = ScoreCellDto.builder()
-                    .roundNo(i)
-                    .hitPinsNumber(new ArrayList<>())
-                    .totalScores(0)
-                    .build();
+            ScoreCellDto scoreCellDto = new ScoreCellDto(i, new ArrayList<>(), 0);
 
             ScoreCellAlgorithmDto scoreCellAlgorithmDto = ScoreCellAlgorithmDto.builder()
                     .scoreCellDto(scoreCellDto)

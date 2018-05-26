@@ -1,6 +1,6 @@
 package org.home.bowling.impl;
 
-import org.home.bowling.dto.CellWrapper;
+import org.home.bowling.dto.ScoreCellAlgorithmDto;
 import org.home.bowling.dto.CurrentHitDto;
 import org.home.bowling.service.ArrayScoresCalculatorService;
 import org.home.bowling.service.ScoresCalculationStrategy;
@@ -17,17 +17,17 @@ public class ArrayArrayScoresCalculatorServiceImpl implements ArrayScoresCalcula
     private ScoresCalculationStrategyPickerService scoresCalculationStrategyPickerService;
 
     @Override
-    public void recalculateArrayScores(List<CellWrapper> cellsWrappers, CurrentHitDto currentHitDto) {
+    public void recalculateArrayScores(List<ScoreCellAlgorithmDto> cellsWrappers, CurrentHitDto currentHitDto) {
         ScoresCalculationStrategy currentStrategy =
                 scoresCalculationStrategyPickerService.pickScoresCalculationStrategy(cellsWrappers, currentHitDto);
 
-        CellWrapper currentCellWrapper = cellsWrappers.get(currentHitDto.getRoundNumber());
-        currentCellWrapper.setScoresCalculationStrategy(currentStrategy);
+        ScoreCellAlgorithmDto currentScoreCellAlgorithmDto = cellsWrappers.get(currentHitDto.getRoundNumber());
+        currentScoreCellAlgorithmDto.setScoresCalculationStrategy(currentStrategy);
 
         recalculateAllCellsScores(cellsWrappers);
     }
 
-    private void recalculateAllCellsScores(List<CellWrapper> cellsWrappers) {
+    private void recalculateAllCellsScores(List<ScoreCellAlgorithmDto> cellsWrappers) {
         for (int i = 0; i < cellsWrappers.size(); i++) {
             ScoresCalculationStrategy scoresCalculationStrategy = cellsWrappers.get(i).getScoresCalculationStrategy();
             scoresCalculationStrategy.recalculateScores(cellsWrappers, i);

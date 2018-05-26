@@ -8,7 +8,7 @@ import org.home.bowling.service.ScoresCalculationStrategy;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CellWrapper {
+public class ScoreCellAlgorithmDto {
     private ScoreCellDto scoreCellDto;
     private ScoresCalculationStrategy scoresCalculationStrategy;
 }

@@ -1,14 +1,14 @@
 package org.home.bowling.service;
 
 import org.home.bowling.dto.CurrentHitDto;
-import org.home.bowling.dto.CellWrapper;
+import org.home.bowling.dto.ScoreCellAlgorithmDto;
 
 import javax.ejb.Local;
 import java.util.List;
 
 @Local
 public interface ScoresArrayStateKeeperService {
-    List<CellWrapper> getInitialScoresArrayState();
+    List<ScoreCellAlgorithmDto> getInitialScoresArrayState();
 
-    void updateScores(List<CellWrapper> scores, CurrentHitDto currentHitDto);
+    void updateScores(List<ScoreCellAlgorithmDto> scores, CurrentHitDto currentHitDto);
 }

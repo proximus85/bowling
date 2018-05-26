@@ -1,6 +1,6 @@
 package org.home.bowling.impl;
 
-import org.home.bowling.dto.CellWrapper;
+import org.home.bowling.dto.ScoreCellAlgorithmDto;
 import org.home.bowling.dto.CurrentHitDto;
 import org.home.bowling.service.ArrayScoresCalculatorService;
 import org.home.bowling.service.ScoresStateService;
@@ -17,7 +17,7 @@ public class ScoresStateServiceImpl implements ScoresStateService {
 
 
     @Override
-    public void updateScoresState(List<CellWrapper> cellsWrappers, CurrentHitDto currentHitDto) {
+    public void updateScoresState(List<ScoreCellAlgorithmDto> cellsWrappers, CurrentHitDto currentHitDto) {
         arrayScoresCalculatorService.recalculateArrayScores(cellsWrappers,currentHitDto);
     }
 }

@@ -1,11 +1,11 @@
 package org.home.bowling.service;
 
-import org.home.bowling.dto.CellWrapper;
+import org.home.bowling.dto.ScoreCellAlgorithmDto;
 
 import javax.ejb.Local;
 import java.util.List;
 
 @Local
 public interface ScoresCalculationStrategy {
-    CellWrapper recalculateScores(List<CellWrapper> scoreCells, int cellIndex);
+    ScoreCellAlgorithmDto recalculateScores(List<ScoreCellAlgorithmDto> scoreCells, int cellIndex);
 }

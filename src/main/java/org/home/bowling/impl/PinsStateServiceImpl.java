@@ -1,7 +1,7 @@
 package org.home.bowling.impl;
 
 import org.home.bowling.dto.CurrentHitDto;
-import org.home.bowling.dto.CellWrapper;
+import org.home.bowling.dto.ScoreCellAlgorithmDto;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.PinsStateService;
 
@@ -12,8 +12,8 @@ import java.util.List;
 public class PinsStateServiceImpl implements PinsStateService {
 
     @Override
-    public void updatePinsState(List<CellWrapper> cellWrappers, CurrentHitDto currentHitDto) {
-        ScoreCellDto scoreCellDto = cellWrappers.get(currentHitDto.getRoundNumber()).getScoreCellDto();
+    public void updatePinsState(List<ScoreCellAlgorithmDto> scoreCellAlgorithmDtos, CurrentHitDto currentHitDto) {
+        ScoreCellDto scoreCellDto = scoreCellAlgorithmDtos.get(currentHitDto.getRoundNumber()).getScoreCellDto();
         scoreCellDto.getScores().add(currentHitDto.getHitPinsNumber());
     }
 }

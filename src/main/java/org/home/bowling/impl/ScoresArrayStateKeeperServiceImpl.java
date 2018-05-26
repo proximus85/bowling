@@ -1,6 +1,6 @@
 package org.home.bowling.impl;
 
-import org.home.bowling.dto.CellWrapper;
+import org.home.bowling.dto.ScoreCellAlgorithmDto;
 import org.home.bowling.dto.CurrentHitDto;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.*;
@@ -28,8 +28,8 @@ public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeper
     private ScoresStateService scoresStateService;
 
     @Override
-    public List<CellWrapper> getInitialScoresArrayState() {//TODO move to initializationSErvice
-        List<CellWrapper> scores = new ArrayList<>();
+    public List<ScoreCellAlgorithmDto> getInitialScoresArrayState() {//TODO move to initializationSErvice
+        List<ScoreCellAlgorithmDto> scores = new ArrayList<>();
         for (int i = 0; i < SCORES_ARRAY_LENGTH; i++) {
 
             ScoreCellDto scoreCellDto = ScoreCellDto.builder()
@@ -38,23 +38,23 @@ public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeper
                     .totalScores(0)
                     .build();
 
-            CellWrapper cellWrapper = CellWrapper.builder()
+            ScoreCellAlgorithmDto scoreCellAlgorithmDto = ScoreCellAlgorithmDto.builder()
                     .scoreCellDto(scoreCellDto)
                     .scoresCalculationStrategy(new ScoresCalculationStrategy() {
                         @Override
-                        public CellWrapper recalculateScores(List<CellWrapper> scoreCells, int cellIndex) {
+                        public ScoreCellAlgorithmDto recalculateScores(List<ScoreCellAlgorithmDto> scoreCells, int cellIndex) {
                             return scoreCells.get(cellIndex);
                         }
                     })
                     .build();
 
-            scores.add(cellWrapper);
+            scores.add(scoreCellAlgorithmDto);
         }
         return scores;
     }
 
     @Override
-    public void updateScores(List<CellWrapper> cellsWrappers, CurrentHitDto currentHitDto) {
+    public void updateScores(List<ScoreCellAlgorithmDto> cellsWrappers, CurrentHitDto currentHitDto) {
         pinsStateService.updatePinsState(cellsWrappers, currentHitDto);
         scoresStateService.updateScoresState(cellsWrappers, currentHitDto);
     }

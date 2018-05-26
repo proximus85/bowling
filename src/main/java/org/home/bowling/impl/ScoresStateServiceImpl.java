@@ -2,7 +2,7 @@ package org.home.bowling.impl;
 
 import org.home.bowling.dto.CurrentHitDto;
 import org.home.bowling.dto.ScoreCellAlgorithmDto;
-import org.home.bowling.service.ArrayScoresCalculatorService;
+import org.home.bowling.service.BowlingArrayScoresCalculatorService;
 import org.home.bowling.service.ScoresStateService;
 
 import javax.ejb.EJB;
@@ -13,10 +13,10 @@ import java.util.List;
 public class ScoresStateServiceImpl implements ScoresStateService {
 
     @EJB
-    private ArrayScoresCalculatorService arrayScoresCalculatorService;
+    private BowlingArrayScoresCalculatorService bowlingArrayScoresCalculatorService;
 
     @Override
     public void updateScoresState(List<ScoreCellAlgorithmDto> cellsWrappers, CurrentHitDto currentHitDto) {
-        arrayScoresCalculatorService.recalculateArrayScores(cellsWrappers, currentHitDto);
+        bowlingArrayScoresCalculatorService.recalculateArrayScores(cellsWrappers, currentHitDto);
     }
 }

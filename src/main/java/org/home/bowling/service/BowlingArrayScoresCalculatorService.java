@@ -7,8 +7,6 @@ import javax.ejb.Local;
 import java.util.List;
 
 @Local
-public interface ArrayScoresCalculatorService {
-
+public interface BowlingArrayScoresCalculatorService {
     void recalculateArrayScores(List<ScoreCellAlgorithmDto> cellsWrappers, CurrentHitDto currentHitDto);
 }
-

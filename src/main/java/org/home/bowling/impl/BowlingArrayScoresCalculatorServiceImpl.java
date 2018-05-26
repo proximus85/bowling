@@ -2,7 +2,7 @@ package org.home.bowling.impl;
 
 import org.home.bowling.dto.CurrentHitDto;
 import org.home.bowling.dto.ScoreCellAlgorithmDto;
-import org.home.bowling.service.ArrayScoresCalculatorService;
+import org.home.bowling.service.BowlingArrayScoresCalculatorService;
 import org.home.bowling.service.ScoresCalculationStrategy;
 import org.home.bowling.service.ScoresCalculationStrategyPickerService;
 
@@ -11,7 +11,7 @@ import javax.ejb.Stateless;
 import java.util.List;
 
 @Stateless
-public class ArrayScoresCalculatorServiceImpl implements ArrayScoresCalculatorService {
+public class BowlingArrayScoresCalculatorServiceImpl implements BowlingArrayScoresCalculatorService {
 
     @EJB
     private ScoresCalculationStrategyPickerService scoresCalculationStrategyPickerService;

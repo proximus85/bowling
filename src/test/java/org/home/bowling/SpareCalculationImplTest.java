@@ -14,6 +14,7 @@ import static org.junit.Assert.assertTrue;
 
 public class SpareCalculationImplTest {
 
+    private final int CELL_INDEX_WITH_SPARE = 1;
     private SpareCalculationImpl spareCalculation;
     private List<ScoreCellAlgorithmDto> scoreCells;
 
@@ -21,13 +22,6 @@ public class SpareCalculationImplTest {
     public void setUp() {
         spareCalculation = new SpareCalculationImpl();
         scoreCells = ScoresCalculationStrategyTestUtils.createEmptyScoresArray();
-    }
-
-    @Test
-    public void shouldRecalculateTotalScoresForSpareWhenNextCellIsEmpty() {
-        //given
-        int CELL_INDEX_WITH_SPARE = 1;
-        int EXPECTED_TOTAL_SCORES = 17;
 
         ScoreCellDto firstScoreCell = scoreCells.get(0).getScoreCellDto();
         firstScoreCell.setRoundNo(0);
@@ -35,8 +29,14 @@ public class SpareCalculationImplTest {
         firstScoreCell.setTotalScores(7);
 
         ScoreCellDto secondScoreCell = scoreCells.get(CELL_INDEX_WITH_SPARE).getScoreCellDto();
-        secondScoreCell.setRoundNo(1);
+        secondScoreCell.setRoundNo(CELL_INDEX_WITH_SPARE);
         secondScoreCell.setHitPinsNumber(Arrays.asList(4, 6));
+    }
+
+    @Test
+    public void shouldRecalculateTotalScoresForSpareWhenNextCellIsEmpty() {
+        //given
+        int EXPECTED_TOTAL_SCORES = 17;
 
         //when
         spareCalculation.recalculateScores(scoreCells, CELL_INDEX_WITH_SPARE);
@@ -49,17 +49,7 @@ public class SpareCalculationImplTest {
     @Test
     public void shouldAddOneHitPinsNumberAfterSpare() {
         //given
-        int CELL_INDEX_WITH_SPARE = 1;
         int EXPECTED_TOTAL_SCORES = 22;
-
-        ScoreCellDto firstScoreCell = scoreCells.get(0).getScoreCellDto();
-        firstScoreCell.setRoundNo(0);
-        firstScoreCell.setHitPinsNumber(Arrays.asList(4, 3));
-        firstScoreCell.setTotalScores(7);
-
-        ScoreCellDto secondScoreCell = scoreCells.get(CELL_INDEX_WITH_SPARE).getScoreCellDto();
-        secondScoreCell.setRoundNo(CELL_INDEX_WITH_SPARE);
-        secondScoreCell.setHitPinsNumber(Arrays.asList(4, 6));
 
         ScoreCellDto thirdScoreCell = scoreCells.get(CELL_INDEX_WITH_SPARE + 1).getScoreCellDto();
         thirdScoreCell.setRoundNo(CELL_INDEX_WITH_SPARE + 1);
@@ -76,17 +66,7 @@ public class SpareCalculationImplTest {
     @Test
     public void shouldNotAddTwoHitPinsNumberAfterSpare() {
         //given
-        int CELL_INDEX_WITH_SPARE = 1;
         int EXPECTED_TOTAL_SCORES = 22;
-
-        ScoreCellDto firstScoreCell = scoreCells.get(0).getScoreCellDto();
-        firstScoreCell.setRoundNo(0);
-        firstScoreCell.setHitPinsNumber(Arrays.asList(4, 3));
-        firstScoreCell.setTotalScores(7);
-
-        ScoreCellDto secondScoreCell = scoreCells.get(CELL_INDEX_WITH_SPARE).getScoreCellDto();
-        secondScoreCell.setRoundNo(CELL_INDEX_WITH_SPARE);
-        secondScoreCell.setHitPinsNumber(Arrays.asList(4, 6));
 
         ScoreCellDto thirdScoreCell = scoreCells.get(CELL_INDEX_WITH_SPARE + 1).getScoreCellDto();
         thirdScoreCell.setRoundNo(CELL_INDEX_WITH_SPARE + 1);

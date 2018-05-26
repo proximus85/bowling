@@ -22,7 +22,7 @@
             <tr>
                 <ui:repeat value="#{scoresBackendBean.scores}" var="scoreCell">
                     <td>
-                        <ui:repeat value="#{scoreCell.scores}" var="score">
+                        <ui:repeat value="#{scoreCell.hitPinsNumber}" var="score">
                             <h:outputText value="#{score}"/>
                         </ui:repeat>
                     </td>

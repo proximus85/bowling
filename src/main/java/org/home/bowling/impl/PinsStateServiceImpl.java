@@ -14,6 +14,6 @@ public class PinsStateServiceImpl implements PinsStateService {
     @Override
     public void updatePinsState(List<ScoreCellAlgorithmDto> scoreCellAlgorithmDtos, CurrentHitDto currentHitDto) {
         ScoreCellDto scoreCellDto = scoreCellAlgorithmDtos.get(currentHitDto.getRoundNumber()).getScoreCellDto();
-        scoreCellDto.getScores().add(currentHitDto.getHitPinsNumber());
+        scoreCellDto.getHitPinsNumber().add(currentHitDto.getHitPinsNumber());
     }
 }

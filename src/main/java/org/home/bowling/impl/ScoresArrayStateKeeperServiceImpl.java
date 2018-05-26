@@ -34,7 +34,7 @@ public class ScoresArrayStateKeeperServiceImpl implements ScoresArrayStateKeeper
 
             ScoreCellDto scoreCellDto = ScoreCellDto.builder()
                     .roundNo(i)
-                    .scores(new ArrayList<>())
+                    .hitPinsNumber(new ArrayList<>())
                     .totalScores(0)
                     .build();
 

@@ -16,8 +16,8 @@ public class SpareCalculationImpl implements ScoresCalculationStrategy {
         ScoreCellAlgorithmDto scoreCellAlgorithmDto = scoreCells.get(cellIndex);
         ScoreCellDto scoreCellDto = scoreCellAlgorithmDto.getScoreCellDto();
 
-        Integer totalPoints = ScoreCalculatorHelper.calculateTotalSum(scoreCellDto.getScores()) +
-                scoreCells.get(cellIndex + 1).getScoreCellDto().getScores().get(0);
+        Integer totalPoints = ScoreCalculatorHelper.calculateTotalSum(scoreCellDto.getHitPinsNumber()) +
+                scoreCells.get(cellIndex + 1).getScoreCellDto().getHitPinsNumber().get(0);
 
         scoreCellDto.setTotalScores(totalPoints);
         return scoreCellAlgorithmDto;

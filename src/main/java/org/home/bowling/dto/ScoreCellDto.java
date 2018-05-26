@@ -11,6 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 public class ScoreCellDto {
     private Integer roundNo;
-    private List<Integer> scores;
+    private List<Integer> hitPinsNumber;
     private Integer totalScores;
 }

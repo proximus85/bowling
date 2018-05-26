@@ -45,7 +45,7 @@ public class ScoresCalculationStrategyPickerServiceImpl implements ScoresCalcula
     private int getScoresSumForCurrentRound(List<ScoreCellAlgorithmDto> scoreCellDtoList, CurrentHitDto currentHitDto) {
         int totalScores = 0;
         ScoreCellDto scoreCellDto = scoreCellDtoList.get(currentHitDto.getRoundNumber()).getScoreCellDto();
-        for (Integer score : scoreCellDto.getScores()) {
+        for (Integer score : scoreCellDto.getHitPinsNumber()) {
             totalScores += score;
         }
         return totalScores;

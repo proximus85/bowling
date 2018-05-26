@@ -7,6 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class CurrentHitDto {
     Integer roundNumber;
-    Integer throwNumber;
+    Integer hitNumber;
     Integer hitPinsNumber;
 }

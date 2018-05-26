@@ -11,7 +11,7 @@ import javax.ejb.Stateless;
 import java.util.List;
 
 @Stateless
-public class ArrayArrayScoresCalculatorServiceImpl implements ArrayScoresCalculatorService {
+public class ArrayScoresCalculatorServiceImpl implements ArrayScoresCalculatorService {
 
     @EJB
     private ScoresCalculationStrategyPickerService scoresCalculationStrategyPickerService;

@@ -10,9 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ScoreCellDto {
-
     private Integer roundNo;
     private List<Integer> scores;
     private Integer totalScores;
-
 }

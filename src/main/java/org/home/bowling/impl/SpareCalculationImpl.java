@@ -16,10 +16,13 @@ public class SpareCalculationImpl implements ScoresCalculationStrategy {
         ScoreCellAlgorithmDto scoreCellAlgorithmDto = scoreCells.get(cellIndex);
         ScoreCellDto scoreCellDto = scoreCellAlgorithmDto.getScoreCellDto();
 
-        Integer totalPoints = ScoreCalculatorHelper.calculateTotalSum(scoreCellDto.getHitPinsNumber()) +
+        Integer totalScores = ScoreCalculatorHelper.calculateTotalSum(scoreCellDto.getHitPinsNumber()) +
                 scoreCells.get(cellIndex + 1).getScoreCellDto().getHitPinsNumber().get(0);
 
-        scoreCellDto.setTotalScores(totalPoints);
+        if (cellIndex - 1 >= 0) {
+            totalScores += scoreCells.get(cellIndex - 1).getScoreCellDto().getTotalScores();
+        }
+        scoreCellDto.setTotalScores(totalScores);
         return scoreCellAlgorithmDto;
     }
 }

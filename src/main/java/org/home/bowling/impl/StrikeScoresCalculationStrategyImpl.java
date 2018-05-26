@@ -16,10 +16,13 @@ public class StrikeScoresCalculationStrategyImpl implements ScoresCalculationStr
         ScoreCellAlgorithmDto scoreCellAlgorithmDto = scoreCells.get(cellIndex);
         ScoreCellDto scoreCellDto = scoreCellAlgorithmDto.getScoreCellDto();
 
-        Integer totalPoints = ScoreCalculatorHelper.calculateTotalSum(scoreCellDto.getHitPinsNumber()) +
+        Integer totalScores = ScoreCalculatorHelper.calculateTotalSum(scoreCellDto.getHitPinsNumber()) +
                 ScoreCalculatorHelper.calculateTotalSum(scoreCells.get(cellIndex + 1).getScoreCellDto().getHitPinsNumber());
 
-        scoreCellDto.setTotalScores(totalPoints);
+        if (cellIndex - 1 >= 0) {
+            totalScores += scoreCells.get(cellIndex - 1).getScoreCellDto().getTotalScores();
+        }
+        scoreCellDto.setTotalScores(totalScores);
         return scoreCellAlgorithmDto;
     }
 }

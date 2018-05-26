@@ -1,7 +1,7 @@
 package org.home.bowling.impl;
 
-import org.home.bowling.dto.ScoreCellAlgorithmDto;
 import org.home.bowling.dto.CurrentHitDto;
+import org.home.bowling.dto.ScoreCellAlgorithmDto;
 import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.ScoresCalculationStrategy;
 import org.home.bowling.service.ScoresCalculationStrategyPickerService;

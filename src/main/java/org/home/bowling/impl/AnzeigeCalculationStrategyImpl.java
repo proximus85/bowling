@@ -15,7 +15,12 @@ public class AnzeigeCalculationStrategyImpl implements ScoresCalculationStrategy
     public ScoreCellAlgorithmDto recalculateScores(List<ScoreCellAlgorithmDto> scoreCells, int cellIndex) {
         ScoreCellAlgorithmDto scoreCellAlgorithmDto = scoreCells.get(cellIndex);
         ScoreCellDto scoreCellDto = scoreCellAlgorithmDto.getScoreCellDto();
-        scoreCellDto.setTotalScores(ScoreCalculatorHelper.calculateTotalSum(scoreCellDto.getHitPinsNumber()));
+
+        int totalScores = ScoreCalculatorHelper.calculateTotalSum(scoreCellDto.getHitPinsNumber());
+        if (cellIndex - 1 >= 0) {
+            totalScores += scoreCells.get(cellIndex - 1).getScoreCellDto().getTotalScores();
+        }
+        scoreCellDto.setTotalScores(totalScores);
         return scoreCellAlgorithmDto;
     }
 }

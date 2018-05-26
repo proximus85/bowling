@@ -9,7 +9,7 @@ import javax.ejb.Stateless;
 import java.util.List;
 
 @Stateless
-public class SpareCalculationImpl implements ScoresCalculationStrategy {
+public class StrikeCalculationStrategy implements ScoresCalculationStrategy {
 
     @Override
     public void recalculateScores(List<ScoreCellAlgorithmDto> scoreCells, int cellIndex) {
@@ -17,9 +17,15 @@ public class SpareCalculationImpl implements ScoresCalculationStrategy {
         ScoreCellDto scoreCellDto = scoreCellAlgorithmDto.getScoreCellDto();
 
         Integer totalScores = ScoreCalculatorHelper.calculateTotalSum(scoreCellDto.getHitPinsNumber());
+
         List<Integer> hitPins = scoreCells.get(cellIndex + 1).getScoreCellDto().getHitPinsNumber();
 
-        if (hitPins.size() >= 1) {
+        if (hitPins.size() > 1) {
+            totalScores += hitPins.get(0);
+            totalScores += hitPins.get(1);
+        }
+
+        if (hitPins.size() == 1) {
             totalScores += hitPins.get(0);
         }
 

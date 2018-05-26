@@ -9,26 +9,14 @@ import javax.ejb.Stateless;
 import java.util.List;
 
 @Stateless
-public class StrikeScoresCalculationStrategyImpl implements ScoresCalculationStrategy {
+public class AnzeigeCalculationStrategy implements ScoresCalculationStrategy {
 
     @Override
     public void recalculateScores(List<ScoreCellAlgorithmDto> scoreCells, int cellIndex) {
         ScoreCellAlgorithmDto scoreCellAlgorithmDto = scoreCells.get(cellIndex);
         ScoreCellDto scoreCellDto = scoreCellAlgorithmDto.getScoreCellDto();
 
-        Integer totalScores = ScoreCalculatorHelper.calculateTotalSum(scoreCellDto.getHitPinsNumber());
-
-        List<Integer> hitPins = scoreCells.get(cellIndex + 1).getScoreCellDto().getHitPinsNumber();
-
-        if (hitPins.size() > 1) {
-            totalScores += hitPins.get(0);
-            totalScores += hitPins.get(1);
-        }
-
-        if (hitPins.size() == 1) {
-            totalScores += hitPins.get(0);
-        }
-
+        int totalScores = ScoreCalculatorHelper.calculateTotalSum(scoreCellDto.getHitPinsNumber());
         if (cellIndex - 1 >= 0) {
             totalScores += scoreCells.get(cellIndex - 1).getScoreCellDto().getTotalScores();
         }

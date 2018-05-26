@@ -2,7 +2,7 @@ package org.home.bowling;
 
 import org.home.bowling.dto.ScoreCellAlgorithmDto;
 import org.home.bowling.dto.ScoreCellDto;
-import org.home.bowling.impl.AnzeigeCalculationStrategyImpl;
+import org.home.bowling.impl.SpareCalculationStrategy;
 import org.home.bowling.util.ScoresCalculationStrategyTestUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,14 +12,15 @@ import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
-public class AnzeigeCalculationStrategyImplTest {
+public class SpareCalculationStrategyTest {
+
     private final int CELL_INDEX_WITH_SPARE = 1;
-    private AnzeigeCalculationStrategyImpl anzeigeCalculationStrategy;
+    private SpareCalculationStrategy spareCalculation;
     private List<ScoreCellAlgorithmDto> scoreCells;
 
     @Before
     public void setUp() {
-        anzeigeCalculationStrategy = new AnzeigeCalculationStrategyImpl();
+        spareCalculation = new SpareCalculationStrategy();
         scoreCells = ScoresCalculationStrategyTestUtils.createEmptyScoresArray();
 
         ScoreCellDto firstScoreCell = scoreCells.get(0).getScoreCellDto();
@@ -32,13 +33,14 @@ public class AnzeigeCalculationStrategyImplTest {
         secondScoreCell.setHitPinsNumber(Arrays.asList(4, 6));
     }
 
+
     @Test
-    public void shouldRecalculateTotalScoresForAnzeigeWhenNextCellIsEmpty() {
+    public void shouldRecalculateTotalScoresForSpareWhenNextCellIsEmpty() {
         //given
         int EXPECTED_TOTAL_SCORES = 17;
 
         //when
-        anzeigeCalculationStrategy.recalculateScores(scoreCells, CELL_INDEX_WITH_SPARE);
+        spareCalculation.recalculateScores(scoreCells, CELL_INDEX_WITH_SPARE);
 
         //then
         assertTrue(EXPECTED_TOTAL_SCORES == scoreCells.get(CELL_INDEX_WITH_SPARE)
@@ -46,16 +48,33 @@ public class AnzeigeCalculationStrategyImplTest {
     }
 
     @Test
-    public void shouldNotAddHitPeansNumbersFromNextCells() {
+    public void shouldAddOneHitPinsNumberAfterSpare() {
         //given
-        int EXPECTED_TOTAL_SCORES = 17;
+        int EXPECTED_TOTAL_SCORES = 22;
 
         ScoreCellDto thirdScoreCell = scoreCells.get(CELL_INDEX_WITH_SPARE + 1).getScoreCellDto();
         thirdScoreCell.setRoundNo(CELL_INDEX_WITH_SPARE + 1);
         thirdScoreCell.setHitPinsNumber(Arrays.asList(5));
 
         //when
-        anzeigeCalculationStrategy.recalculateScores(scoreCells, CELL_INDEX_WITH_SPARE);
+        spareCalculation.recalculateScores(scoreCells, CELL_INDEX_WITH_SPARE);
+
+        //then
+        assertTrue(EXPECTED_TOTAL_SCORES == scoreCells.get(CELL_INDEX_WITH_SPARE)
+                .getScoreCellDto().getTotalScores());
+    }
+
+    @Test
+    public void shouldNotAddTwoHitPinsNumberAfterSpare() {
+        //given
+        int EXPECTED_TOTAL_SCORES = 22;
+
+        ScoreCellDto thirdScoreCell = scoreCells.get(CELL_INDEX_WITH_SPARE + 1).getScoreCellDto();
+        thirdScoreCell.setRoundNo(CELL_INDEX_WITH_SPARE + 1);
+        thirdScoreCell.setHitPinsNumber(Arrays.asList(5, 3));
+
+        //when
+        spareCalculation.recalculateScores(scoreCells, CELL_INDEX_WITH_SPARE);
 
         //then
         assertTrue(EXPECTED_TOTAL_SCORES == scoreCells.get(CELL_INDEX_WITH_SPARE)

@@ -23,7 +23,6 @@ public class BowlingArrayScoresCalculatorServiceImpl implements BowlingArrayScor
 
         ScoreCellAlgorithmDto currentScoreCellAlgorithmDto = cellsWrappers.get(currentHitDto.getRoundNumber());
         currentScoreCellAlgorithmDto.setScoresCalculationStrategy(currentStrategy);
-
         recalculateAllCellsScores(cellsWrappers);
     }
 

@@ -25,4 +25,6 @@ public class ScoresCalculationStrategyTestUtils {
         }
         return scoreCellAlgorithmDtos;
     }
+
+
 }

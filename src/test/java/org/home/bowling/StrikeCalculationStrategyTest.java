@@ -2,7 +2,7 @@ package org.home.bowling;
 
 import org.home.bowling.dto.ScoreCellAlgorithmDto;
 import org.home.bowling.dto.ScoreCellDto;
-import org.home.bowling.impl.StrikeScoresCalculationStrategyImpl;
+import org.home.bowling.impl.StrikeCalculationStrategy;
 import org.home.bowling.util.ScoresCalculationStrategyTestUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,15 +12,15 @@ import java.util.List;
 
 import static org.junit.Assert.assertTrue;
 
-public class StrikeScoresCalculationStrategyImplTest {
+public class StrikeCalculationStrategyTest {
 
     private final int CELL_INDEX_WITH_STRIKE = 1;
-    private StrikeScoresCalculationStrategyImpl strikeScoresCalculationStrategy;
+    private StrikeCalculationStrategy strikeScoresCalculationStrategy;
     private List<ScoreCellAlgorithmDto> scoreCells;
 
     @Before
     public void setUp() {
-        strikeScoresCalculationStrategy = new StrikeScoresCalculationStrategyImpl();
+        strikeScoresCalculationStrategy = new StrikeCalculationStrategy();
         scoreCells = ScoresCalculationStrategyTestUtils.createEmptyScoresArray();
 
         ScoreCellDto firstScoreCell = scoreCells.get(0).getScoreCellDto();

@@ -12,17 +12,26 @@ import java.util.List;
 public class StrikeScoresCalculationStrategyImpl implements ScoresCalculationStrategy {
 
     @Override
-    public ScoreCellAlgorithmDto recalculateScores(List<ScoreCellAlgorithmDto> scoreCells, int cellIndex) {
+    public void recalculateScores(List<ScoreCellAlgorithmDto> scoreCells, int cellIndex) {
         ScoreCellAlgorithmDto scoreCellAlgorithmDto = scoreCells.get(cellIndex);
         ScoreCellDto scoreCellDto = scoreCellAlgorithmDto.getScoreCellDto();
 
-        Integer totalScores = ScoreCalculatorHelper.calculateTotalSum(scoreCellDto.getHitPinsNumber()) +
-                ScoreCalculatorHelper.calculateTotalSum(scoreCells.get(cellIndex + 1).getScoreCellDto().getHitPinsNumber());
+        Integer totalScores = ScoreCalculatorHelper.calculateTotalSum(scoreCellDto.getHitPinsNumber());
+
+        List<Integer> hitPins = scoreCells.get(cellIndex + 1).getScoreCellDto().getHitPinsNumber();
+
+        if (hitPins.size() > 1) {
+            totalScores += hitPins.get(0);
+            totalScores += hitPins.get(1);
+        }
+
+        if (hitPins.size() == 1) {
+            totalScores += hitPins.get(0);
+        }
 
         if (cellIndex - 1 >= 0) {
             totalScores += scoreCells.get(cellIndex - 1).getScoreCellDto().getTotalScores();
         }
         scoreCellDto.setTotalScores(totalScores);
-        return scoreCellAlgorithmDto;
     }
 }

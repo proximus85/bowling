@@ -7,5 +7,5 @@ import java.util.List;
 
 @Local
 public interface ScoresCalculationStrategy {
-    ScoreCellAlgorithmDto recalculateScores(List<ScoreCellAlgorithmDto> scoreCells, int cellIndex);
+    void recalculateScores(List<ScoreCellAlgorithmDto> scoreCells, int cellIndex);
 }

@@ -5,6 +5,7 @@ import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.BowlingArrayInitializationService;
 import org.home.bowling.service.ScoresCalculationStrategy;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,9 @@ import java.util.List;
 public class BowlingArrayInitializationServiceImpl implements BowlingArrayInitializationService {
 
     private static final int SCORES_ARRAY_LENGTH = 10;
+
+    @EJB(beanName = "DefaultScoresCalculationStrategy")
+    private ScoresCalculationStrategy scoresCalculationStrategy;
 
     @Override
     public List<ScoreCellAlgorithmDto> getInitializedBowlingArray() {
@@ -24,12 +28,7 @@ public class BowlingArrayInitializationServiceImpl implements BowlingArrayInitia
 
             ScoreCellAlgorithmDto scoreCellAlgorithmDto = ScoreCellAlgorithmDto.builder()
                     .scoreCellDto(scoreCellDto)
-                    .scoresCalculationStrategy(new ScoresCalculationStrategy() {
-                        @Override
-                        public ScoreCellAlgorithmDto recalculateScores(List<ScoreCellAlgorithmDto> scoreCells, int cellIndex) {
-                            return scoreCells.get(cellIndex);
-                        }
-                    })
+                    .scoresCalculationStrategy(scoresCalculationStrategy)
                     .build();
             scores.add(scoreCellAlgorithmDto);
         }

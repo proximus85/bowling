@@ -12,7 +12,7 @@ import java.util.List;
 public class AnzeigeCalculationStrategyImpl implements ScoresCalculationStrategy {
 
     @Override
-    public ScoreCellAlgorithmDto recalculateScores(List<ScoreCellAlgorithmDto> scoreCells, int cellIndex) {
+    public void recalculateScores(List<ScoreCellAlgorithmDto> scoreCells, int cellIndex) {
         ScoreCellAlgorithmDto scoreCellAlgorithmDto = scoreCells.get(cellIndex);
         ScoreCellDto scoreCellDto = scoreCellAlgorithmDto.getScoreCellDto();
 
@@ -21,6 +21,5 @@ public class AnzeigeCalculationStrategyImpl implements ScoresCalculationStrategy
             totalScores += scoreCells.get(cellIndex - 1).getScoreCellDto().getTotalScores();
         }
         scoreCellDto.setTotalScores(totalScores);
-        return scoreCellAlgorithmDto;
     }
 }

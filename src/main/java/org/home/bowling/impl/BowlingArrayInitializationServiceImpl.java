@@ -5,9 +5,11 @@ import org.home.bowling.dto.ScoreCellDto;
 import org.home.bowling.service.BowlingArrayInitializationService;
 import org.home.bowling.service.ScoresCalculationStrategy;
 
+import javax.ejb.Stateless;
 import java.util.ArrayList;
 import java.util.List;
 
+@Stateless
 public class BowlingArrayInitializationServiceImpl implements BowlingArrayInitializationService {
 
     private static final int SCORES_ARRAY_LENGTH = 10;

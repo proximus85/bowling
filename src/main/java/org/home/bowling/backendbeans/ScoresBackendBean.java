@@ -51,8 +51,19 @@ public class ScoresBackendBean {
 
     @PostConstruct
     void initializeScoresArray() {
+        setScoresArrayToInitialState();
+    }
+
+    public void reset() {
+        setScoresArrayToInitialState();
+    }
+
+    private void setScoresArrayToInitialState() {
         scoreCellAlgorithmDtos = scoresArrayStateKeeperService.getInitialScoresArrayState();
         scores = scoresCellMapper.mapToDto(scoreCellAlgorithmDtos);
+        counter = 0;
+        roundNumber = 0;
+        hitNumber = 0;
     }
 
     public void updateBowlingArray() {

@@ -41,10 +41,8 @@
         </table>
         <h:form>
             <h:inputText id="hitedPinsNumberId" value="#{scoresBackendBean.hitedPinsNumber}"/>
-
-            <h:commandButton value="submit" type="submit" action="#{scoresBackendBean.updateBowlingArray()}">
-                <!--<f:ajax render=":scores-array-form-id"/> TODO only table should be rendered not whole form-->
-            </h:commandButton>
+            <h:commandButton value="hit" type="submit" action="#{scoresBackendBean.updateBowlingArray()}"/>
+            <h:commandButton value="reset" type="submit" action="#{scoresBackendBean.reset()}"/>
         </h:form>
     </ui:define>
 </ui:composition>

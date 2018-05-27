@@ -23,3 +23,27 @@
     height: 100px;
     width: 100px;
 }
+
+
+#scores-table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#scores-table td, #scores-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#scores-table tr:nth-child(even){background-color: #f2f2f2;}
+
+#scores-table tr:hover {background-color: #ddd;}
+
+#scores-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}

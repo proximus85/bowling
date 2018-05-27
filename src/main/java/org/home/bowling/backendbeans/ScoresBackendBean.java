@@ -73,20 +73,12 @@ public class ScoresBackendBean {
             scoresArrayStateKeeperService.updateScores(scoreCellAlgorithmDtos, currentHitDto);
             scores = scoresCellMapper.mapToDto(scoreCellAlgorithmDtos);
             if (counter == 20) {
-                result = calculateResult(scores);
+                result = scores.get(scores.size() - 1).getTotalScores();
             }
             counter++;
             updateHitNumber();
             updateRoundNumber();
         }
-    }
-
-    private Integer calculateResult(List<ScoreCellDto> scores) {
-        Integer result = 0;
-        for (ScoreCellDto score : scores) {//TODO move to service
-            result += score.getTotalScores();
-        }
-        return result;
     }
 
     private void updateHitNumber() {

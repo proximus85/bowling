@@ -35,16 +35,15 @@ public class ScoresCalculationStrategyPickerServiceImpl implements ScoresCalcula
 
         validateInput(scoreCellAlgorithmDtos, currentHitDto);
         //TODO rename if to prediacte functions names
-        if ((currentHitDto.getHitPinsNumber() == PINS_NUMBER ||
-                isMaxPinNumberHited(scoreCellAlgorithmDtos, currentHitDto))
-                && currentHitDto.getRoundNumber() < ROUNDS_NUMBER) {
-
-            return strikeCalculationStrategy;
-        }
-
         if (currentHitDto.getHitPinsNumber() == PINS_NUMBER && currentHitDto.getRoundNumber() < ROUNDS_NUMBER) {
             return strikeCalculationStrategy;
         }
+
+        if ((currentHitDto.getHitPinsNumber() == PINS_NUMBER || isMaxPinNumberHited(scoreCellAlgorithmDtos, currentHitDto))
+                && currentHitDto.getRoundNumber() < ROUNDS_NUMBER) {
+            return strikeCalculationStrategy;
+        }
+
 
         if (getScoresSumForCurrentRound(scoreCellAlgorithmDtos, currentHitDto) == PINS_NUMBER
                 && currentHitDto.getRoundNumber() < ROUNDS_NUMBER) {

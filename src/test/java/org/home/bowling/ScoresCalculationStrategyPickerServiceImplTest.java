@@ -74,13 +74,13 @@ public class ScoresCalculationStrategyPickerServiceImplTest {
         //given
         int roundNumber = 0;
         int hitNumber = 1;
-        int hitPinsNumber = 0;
+        int hitPinsNumber = 3;
 
         CurrentHitDto currentHitDto = new CurrentHitDto(roundNumber, hitNumber, hitPinsNumber);
 
         ScoreCellDto scoreCellDto = scoreCellAlgorithmDtoList.get(0).getScoreCellDto();
         scoreCellDto.setRoundNo(0);
-        scoreCellDto.setHitPinsNumber(Arrays.asList(PINS_NUMBER - hitPinsNumber));
+        scoreCellDto.setHitPinsNumber(Arrays.asList(PINS_NUMBER - hitPinsNumber, hitPinsNumber));
 
         //when
         ScoresCalculationStrategy actualStrategy = scoresCalculationStrategyPickerService

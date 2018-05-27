@@ -64,6 +64,7 @@ public class ScoresBackendBean {
         counter = 0;
         roundNumber = 0;
         hitNumber = 0;
+        result = 0;
     }
 
     public void updateBowlingArray() {
@@ -71,12 +72,12 @@ public class ScoresBackendBean {
             CurrentHitDto currentHitDto = new CurrentHitDto(roundNumber, hitNumber, hitedPinsNumber);
             scoresArrayStateKeeperService.updateScores(scoreCellAlgorithmDtos, currentHitDto);
             scores = scoresCellMapper.mapToDto(scoreCellAlgorithmDtos);
-            counter++;
-            updateHitNumber();
-            updateRoundNumber();
             if (counter == 20) {
                 result = calculateResult(scores);
             }
+            counter++;
+            updateHitNumber();
+            updateRoundNumber();
         }
     }
 
